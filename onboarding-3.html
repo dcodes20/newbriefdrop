@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – You’re set</title>
+  <meta name="description" content="We’ll start with briefs that match you.">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/onboarding-done.png" as="image">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="signin.css">
+  <link rel="stylesheet" href="onboarding.css">
+  <link rel="stylesheet" href="onboarding-3.css">
+  <script src="onboarding-3.js" defer></script>
+</head>
+<body>
+
+  <div class="glow" aria-hidden="true"></div>
+
+  <main class="signin onb onb3">
+    <div class="panel">
+      <header class="top" data-in>
+        <a class="logo" href="index.html" aria-label="BriefDrop home">BRIEFDROP</a>
+      </header>
+
+      <div class="steps" data-in>
+        <span class="steps__sp" aria-hidden="true"></span>
+        <div class="dots dots--from2" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-label="Onboarding progress">
+          <span class="dot"></span><span class="dot"></span><span class="dot is-on"></span>
+        </div>
+        <p class="steps__count">3 of 3</p>
+      </div>
+
+      <div class="head">
+        <h1 class="title">You’re set.</h1>
+        <p class="sub" data-in>We’ll start with briefs that match you.</p>
+      </div>
+
+      <div class="done" id="done">
+        <div class="done__float">
+          <img class="done__img" src="assets/onboarding-done.png" width="334" height="222"
+               alt="A creator lounging on the floor with a laptop, surrounded by a plant, a Behance tile, a GitHub tile and a share icon.">
+        </div>
+      </div>
+
+      <a class="cta" id="show" href="home-empty.html" data-in><span class="cta__label">Show me a brief</span></a>
+    </div>
+  </main>
+
+  <dialog class="pick" id="pick" aria-labelledby="pick-title">
+    <button class="pick__close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <div class="pick__art" id="pick-art" aria-hidden="true"></div>
+    <div class="pick__body">
+      <p class="pick__why" id="pick-why"></p>
+      <span class="pick__chip" id="pick-chip"><i id="pick-dot"></i><span id="pick-chip-text"></span></span>
+      <h2 class="pick__title" id="pick-title"></h2>
+      <p class="pick__text" id="pick-text"></p>
+      <div class="pick__btns">
+        <a class="pbtn pbtn--primary" href="index.html#briefs">Start this one</a>
+        <button class="pbtn pbtn--ghost" type="button" id="pick-next">Another one</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>

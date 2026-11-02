@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Briefs</title>
+  <meta name="description" content="A fresh set of briefs every 24 hours.">
+  <!-- Same brief source as home.html: your Claude-backed endpoint, with a local fallback. A new pool is made every 24 hours. -->
+  <meta name="briefdrop-api" content="/api/briefs">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="briefs.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="briefs.js" defer></script>
+</head>
+<body>
+
+  <div class="b-top" id="top">
+    <div class="b-top__in">
+      <div class="b-head">
+        <h1 class="b-title">Briefs</h1>
+        <div class="b-icons">
+          <button class="b-ico" id="funnel" type="button" aria-label="Sort briefs" aria-haspopup="dialog">{{i:funnel}}<i class="b-dot" aria-hidden="true"></i></button>
+          <button class="b-ico" id="searchbtn" type="button" aria-label="Search">{{i:search}}</button>
+        </div>
+      </div>
+
+      <label class="b-search">
+        {{i:search}}
+        <input id="q" type="search" placeholder="Search by skill, industry or keyword…" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
+        <button class="b-clear" id="qclear" type="button" aria-label="Clear search" hidden>{{i:x}}</button>
+      </label>
+
+      <div class="b-pills" id="pills" role="toolbar" aria-label="Filters"></div>
+    </div>
+  </div>
+
+  <main class="b-main">
+    <div class="b-status" id="status" aria-live="polite">
+      <span id="count">&nbsp;</span>
+      <span class="b-sep" aria-hidden="true">·</span>
+      <span class="b-drop" id="drop" title="A fresh set of briefs is made every 24 hours"></span>
+      <span class="src" id="src" hidden></span>
+    </div>
+    <div class="b-grid" id="grid"></div>
+    <div class="b-none" id="none" hidden>
+      <p class="b-none__t">No briefs match.</p>
+      <p class="b-none__s">Try fewer filters or a different word.</p>
+      <button class="pbtn pbtn--ghost" id="reset" type="button">Clear filters</button>
+    </div>
+  </main>
+
+  <nav class="tabs" aria-label="Main">
+    <a class="tab" href="home.html" aria-label="Home">{{i:house}}</a>
+    <a class="tab is-on" href="briefs.html" aria-current="page">{{i:briefcase-business}}<span>Briefs</span></a>
+    <button class="tab" type="button" data-soon="Library" aria-label="Library">{{i:layers}}</button>
+    <button class="tab" type="button" data-soon="Profile" aria-label="Profile">{{i:circle-user-round}}</button>
+  </nav>
+
+  <!-- brief details -->
+  <dialog class="sheet" id="detail" aria-labelledby="d-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close>{{i:x}}</button>
+    <div class="sheet__body">
+      <p class="kick" id="d-kick"></p>
+      <h2 class="sheet__title" id="d-title"></h2>
+      <p class="sheet__sum" id="d-sum"></p>
+      <div class="meta" id="d-meta"></div>
+      <p class="sheet__h">What you’ll deliver</p>
+      <ul class="checks" id="d-list"></ul>
+      <p class="progress" id="d-prog" aria-live="polite"></p>
+      <div class="sheet__btns">
+        <button class="pbtn pbtn--primary" type="button" id="d-begin">Begin</button>
+        <button class="pbtn pbtn--ghost" type="button" id="d-save" aria-pressed="false">{{i:bookmark}}<span>Save</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- sort -->
+  <dialog class="sheet" id="sortdlg" aria-labelledby="so-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close>{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="so-title">Sort briefs</h2>
+      <div class="opts opts--col" id="sortopts" role="radiogroup" aria-label="Sort by"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>

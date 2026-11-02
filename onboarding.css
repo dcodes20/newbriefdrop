@@ -1,0 +1,58 @@
+/* BriefDrop – Onboarding 1 of 3 (Figma node 251:5357, 402 × 874). Builds on signin.css. */
+
+.onb .panel { padding-top: max(26px, env(safe-area-inset-top)); }
+
+/* progress: 3 pills (active is 24px, others 8px) + "1 of 3" at the right */
+.steps { margin-top: 48px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.dots { display: flex; gap: 6px; align-items: center; }
+.dot { display: block; height: 4px; width: 8px; border-radius: 999px; background: var(--ink); transition: width .5s cubic-bezier(.3,1.4,.5,1), background-color .3s; }
+.dot.is-on { width: 24px; background: var(--primary); }
+.steps__count { justify-self: end; font-size: 12px; line-height: 16px; color: var(--muted); }
+
+.onb .head { margin-top: 20px; }
+.onb .title { line-height: 46px; }
+.onb .sub { transition: color .2s; }
+.onb .sub.is-warn { color: var(--error); }
+.onb .sub .n { display: inline-block; }
+
+/* chips */
+.chips { margin-top: 26px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; padding-inline: 0; }
+.row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.chip {
+  position: relative; padding: 16px; border: 1.5px solid var(--ink); border-radius: 14px; background: var(--surface); color: var(--white);
+  font-family: var(--f-display); font-weight: 700; font-size: 14px; line-height: normal; white-space: nowrap;
+  rotate: var(--r, 0deg);
+  transition: rotate .45s cubic-bezier(.3,1.5,.5,1), translate .3s cubic-bezier(.2,.8,.2,1), background-color .2s, border-color .2s, box-shadow .3s, color .2s;
+}
+.chip:hover { translate: 0 -3px; border-color: #4a4a4a; rotate: calc(var(--r, 0deg) * 1.35 + .6deg); }
+.chip:active { scale: .95; }
+.chip[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); rotate: 0deg; box-shadow: 0 12px 28px -12px rgba(24,90,219,.9); }
+.chip[aria-pressed="true"]:hover { translate: 0 -3px; rotate: 0deg; }
+/* little check that grows in without changing the chip's width */
+.chip::after { content: ""; position: absolute; right: -7px; top: -7px; width: 20px; height: 20px; border-radius: 50%; background: var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 13px no-repeat; scale: 0; transition: scale .4s cubic-bezier(.3,1.8,.5,1); }
+.chip[aria-pressed="true"]::after { scale: 1; }
+
+.onb .cta { margin-top: auto; }
+.chips + .cta { margin-top: auto; }
+.onb .form-gap { height: 36px; }
+.onb .panel > .cta { margin-top: auto; }
+.onb .panel::after { content: none; }
+.chips { margin-bottom: 36px; }
+
+.js .chip { animation: chip-in .6s cubic-bezier(.3,1.4,.5,1) both; animation-delay: calc(var(--i, 0) * 60ms + 450ms); }
+@keyframes chip-in { from { opacity: 0; translate: 0 18px; scale: .85; } to { opacity: 1; translate: 0 0; scale: 1; } }
+.js .dot.is-on { animation: draw .7s cubic-bezier(.2,.8,.2,1) .4s both; transform-origin: left; }
+
+@media (min-width: 640px) {
+  .onb .panel { max-width: 460px; }
+  .steps { margin-top: 28px; }
+  .onb .head { margin-top: 18px; }
+  .onb .title { text-wrap: balance; }
+  .chips { margin-top: 28px; align-items: center; }
+  .row { justify-content: center; }
+}
+@media (min-width: 640px) and (max-height: 860px) {
+  .steps { margin-top: 20px; }
+  .chips { margin-top: 20px; gap: 12px; margin-bottom: 26px; }
+  .chip { padding: 13px 16px; }
+}

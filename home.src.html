@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Home</title>
+  <meta name="description" content="Your next best brief, fresh every time.">
+  <!-- Where fresh briefs come from. Point this at a backend that calls Claude (see server/server.js).
+       If it can't be reached, the app falls back to a local generator so briefs still never repeat. -->
+  <meta name="briefdrop-api" content="/api/briefs">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="home.js" defer></script>
+</head>
+<body>
+
+  <header class="bar" id="bar">
+    <div class="bar__in">
+      <div class="me">
+        <span class="avatar" aria-hidden="true">{{i:circle-user-round}}</span>
+        <p class="me__hi">Ready when you are.</p>
+      </div>
+      <div class="bar__r">
+        <button class="bell" id="bell" type="button" aria-label="Notifications, 1 new">{{i:bell}}<span class="bell__dot" aria-hidden="true"></span></button>
+        <button class="streak" id="streak" type="button" aria-label="4-day streak">{{i:flame}}<span>4-day streak</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="home">
+    <section class="card hero" id="hero" aria-label="Your next best brief">
+      <div class="card__top"><p class="kick">YOUR NEXT BEST BRIEF</p></div>
+      <h2 class="card__title">Design a calm savings experience for young adults</h2>
+      <div class="meta"><span>Fintech</span><i></i><span>Intermediate</span><i></i><span>3–5 hours</span></div>
+      <div class="card__act"><button class="cta cta--card" type="button" data-start>Start this one</button></div>
+    </section>
+
+    <section class="daily" aria-labelledby="daily-h">
+      <div class="daily__head">
+        <h2 id="daily-h">Today’s Daily Drop</h2>
+        <button class="link" id="seeall" type="button" aria-expanded="false">See all</button>
+      </div>
+      <div class="list" id="daily">
+        <article class="card"><div class="card__top"><p class="kick">DAILY</p></div><h3 class="card__title">Design a calm savings experience for young adults</h3><div class="card__foot"><div class="meta"><span>Fintech</span><i></i><span>Intermediate</span><i></i><span>3–5 hours</span></div><button class="cta cta--sm" type="button" data-start>Start</button></div></article>
+        <article class="card"><div class="card__top"><p class="kick">DAILY</p></div><h3 class="card__title">Design a calm savings experience for young adults</h3><div class="card__foot"><div class="meta"><span>Fintech</span><i></i><span>Intermediate</span><i></i><span>3–5 hours</span></div><button class="cta cta--sm" type="button" data-start>Start</button></div></article>
+      </div>
+    </section>
+
+    <div class="quick">
+      <button class="tile" id="surprise" type="button" style="--r:-4deg"><span class="tile__ic" style="--ir:0deg">{{i:dices}}</span><span>Surprise me</span></button>
+      <button class="tile" id="saved" type="button" style="--r:0deg"><span class="tile__ic" style="--ir:8deg">{{i:bookmark}}<b class="tile__n" id="saved-n" hidden>0</b></span><span>Saved briefs</span></button>
+      <button class="tile" id="build" type="button" style="--r:4deg"><span class="tile__ic" style="--ir:-8deg">{{i:zap}}</span><span>Build my own</span></button>
+    </div>
+
+    <button class="cta cta--wide" id="show" type="button"><span class="cta__label">Show me a brief</span></button>
+  </main>
+
+  <nav class="tabs" aria-label="Main">
+    <a class="tab is-on" href="home.html" aria-current="page">{{i:house}}<span>Home</span></a>
+    <a class="tab" href="briefs.html" aria-label="Briefs">{{i:briefcase-business}}</a>
+    <button class="tab" type="button" data-soon="Library" aria-label="Library">{{i:layers}}</button>
+    <button class="tab" type="button" data-soon="Profile" aria-label="Profile">{{i:circle-user-round}}</button>
+  </nav>
+
+  <!-- brief details -->
+  <dialog class="sheet" id="detail" aria-labelledby="d-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close>{{i:x}}</button>
+    <div class="sheet__body">
+      <p class="kick" id="d-kick"></p>
+      <h2 class="sheet__title" id="d-title"></h2>
+      <div class="meta" id="d-meta"></div>
+      <p class="sheet__h">What you’ll deliver</p>
+      <ul class="checks" id="d-list"></ul>
+      <p class="progress" id="d-prog" aria-live="polite"></p>
+      <div class="sheet__btns">
+        <button class="pbtn pbtn--primary" type="button" id="d-begin">Begin</button>
+        <button class="pbtn pbtn--ghost" type="button" id="d-save" aria-pressed="false">{{i:bookmark}}<span>Save</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- saved briefs -->
+  <dialog class="sheet" id="savedlg" aria-labelledby="s-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close>{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="s-title">Saved briefs</h2>
+      <ul class="saved" id="s-list"></ul>
+      <p class="empty" id="s-empty">Nothing saved yet. Tap the bookmark on any brief to keep it here.</p>
+    </div>
+  </dialog>
+
+  <!-- build my own -->
+  <dialog class="sheet" id="builddlg" aria-labelledby="b-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close>{{i:x}}</button>
+    <form class="sheet__body" id="b-form">
+      <h2 class="sheet__title" id="b-title">Build my own</h2>
+      <p class="sheet__sub">Pick a craft and a level. Claude does the rest.</p>
+      <p class="sheet__h">Craft</p>
+      <div class="opts" id="b-craft" role="radiogroup" aria-label="Craft"></div>
+      <p class="sheet__h">Level</p>
+      <div class="seg" id="b-level" role="radiogroup" aria-label="Level"></div>
+      <label class="sheet__h" for="b-topic">Topic <span class="opt">(optional)</span></label>
+      <input class="txt" id="b-topic" type="text" maxlength="28" placeholder="e.g. fintech, music, travel" autocomplete="off">
+      <div class="sheet__btns"><button class="pbtn pbtn--primary" type="submit" id="b-go">{{i:sparkles}}<span>Generate</span></button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>

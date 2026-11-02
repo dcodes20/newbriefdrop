@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402 402" width="402" height="402" role="img" aria-label="">
+  <!-- Placeholder artwork. Replace with the exported Figma illustration (node 251:5143). -->
+  <path d="M60 210C40 130 100 56 190 44c80-10 150 26 150 100 0 62-40 78-70 118-34 46-48 78-110 74-62-4-86-64-100-126z" fill="#6a3df5"/>
+  <circle cx="338" cy="190" r="40" fill="#ff4d3a"/>
+  <ellipse cx="200" cy="350" rx="190" ry="30" fill="#fcb017"/>
+  <ellipse cx="200" cy="350" rx="190" ry="30" fill="none"/>
+  <g transform="translate(142 70) rotate(-6)"><rect width="122" height="150" rx="10" fill="#fbecc9"/><rect x="16" y="22" width="90" height="8" rx="4" fill="#b9a6ff"/><rect x="16" y="44" width="70" height="8" rx="4" fill="#b9a6ff"/><rect x="16" y="66" width="82" height="8" rx="4" fill="#b9a6ff"/><rect x="16" y="88" width="60" height="8" rx="4" fill="#b9a6ff"/><circle cx="26" cy="124" r="8" fill="#fcb017"/><rect x="42" y="120" width="50" height="8" rx="4" fill="#b9a6ff"/></g>
+  <text x="204" y="226" font-family="Unbounded, Nunito, sans-serif" font-weight="800" font-size="120" fill="#0a0a0a" text-anchor="middle" opacity=".9">?</text>
+  <g transform="translate(40 280)"><rect width="130" height="22" rx="4" fill="#1d6b4f"/><rect y="22" width="140" height="22" rx="4" fill="#5b3fe0"/><rect x="6" y="3" width="100" height="3" fill="#f3d9a0" opacity=".7"/></g>
+  <g transform="translate(300 270)"><rect x="10" y="40" width="46" height="40" rx="6" fill="#141414"/><path d="M33 40C14 38 6 14 12 0c18 6 26 20 21 40zM33 40c18-4 30-18 30-36-18 4-30 18-30 36z" fill="#1d6b4f"/></g>
+  <path d="M56 54l6 14 14 6-14 6-6 14-6-14-14-6 14-6z" fill="#fcb017"/>
+  <path d="M352 118l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#fcb017"/>
+  <g transform="translate(40 120) rotate(-14)"><rect width="52" height="64" rx="5" fill="#fbecc9"/><rect x="8" y="12" width="36" height="5" rx="2.5" fill="#b9a6ff"/><rect x="8" y="26" width="28" height="5" rx="2.5" fill="#b9a6ff"/></g>
+</svg>

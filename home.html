@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Home</title>
+  <meta name="description" content="Your next best brief, fresh every time.">
+  <!-- Where fresh briefs come from. Point this at a backend that calls Claude (see server/server.js).
+       If it can't be reached, the app falls back to a local generator so briefs still never repeat. -->
+  <meta name="briefdrop-api" content="/api/briefs">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="home.js" defer></script>
+</head>
+<body>
+
+  <header class="bar" id="bar">
+    <div class="bar__in">
+      <div class="me">
+        <span class="avatar" aria-hidden="true"><img src="./assets/home-profile.png" alt="" width="100%"></span>
+        <p class="me__hi">Ready when you are.</p>
+      </div>
+      <div class="bar__r">
+        <button class="bell" id="bell" type="button" aria-label="Notifications, 1 new"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.268 21a2 2 0 0 0 3.464 0" /> <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /></svg><span class="bell__dot" aria-hidden="true"></span></button>
+        <button class="streak" id="streak" type="button" aria-label="4-day streak"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" /></svg><span>4-day streak</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="home">
+    <section class="card hero" id="hero" aria-label="Your next best brief">
+      <div class="card__top"><p class="kick">YOUR NEXT BEST BRIEF</p></div>
+      <h2 class="card__title">Design a calm savings experience for young adults</h2>
+      <div class="meta"><span>Fintech</span><i></i><span>Intermediate</span><i></i><span>3–5 hours</span></div>
+      <div class="card__act"><button class="cta cta--card" type="button" data-start>Start this one</button></div>
+    </section>
+
+    <section class="daily" aria-labelledby="daily-h">
+      <div class="daily__head">
+        <h2 id="daily-h">Today’s Daily Drop</h2>
+        <button class="link" id="seeall" type="button" aria-expanded="false">See all</button>
+      </div>
+      <div class="list" id="daily">
+        <article class="card"><div class="card__top"><p class="kick">DAILY</p></div><h3 class="card__title">Design a calm savings experience for young adults</h3><div class="card__foot"><div class="meta"><span>Fintech</span><i></i><span>Intermediate</span><i></i><span>3–5 hours</span></div><button class="cta cta--sm" type="button" data-start>Start</button></div></article>
+        <article class="card"><div class="card__top"><p class="kick">DAILY</p></div><h3 class="card__title">Design a calm savings experience for young adults</h3><div class="card__foot"><div class="meta"><span>Fintech</span><i></i><span>Intermediate</span><i></i><span>3–5 hours</span></div><button class="cta cta--sm" type="button" data-start>Start</button></div></article>
+      </div>
+    </section>
+
+    <div class="quick">
+      <button class="tile" id="surprise" type="button" style="--r:-4deg"><span class="tile__ic" style="--ir:0deg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="12" height="12" x="2" y="10" rx="2" ry="2" /> <path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6" /> <path d="M6 18h.01" /> <path d="M10 14h.01" /> <path d="M15 6h.01" /> <path d="M18 9h.01" /></svg></span><span>Surprise me</span></button>
+      <button class="tile" id="saved" type="button" style="--r:0deg"><span class="tile__ic" style="--ir:8deg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" /></svg><b class="tile__n" id="saved-n" hidden>0</b></span><span>Saved briefs</span></button>
+      <button class="tile" id="build" type="button" style="--r:4deg"><span class="tile__ic" style="--ir:-8deg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z" /></svg></span><span>Build my own</span></button>
+    </div>
+
+    <button class="cta cta--wide" id="show" type="button"><span class="cta__label">Show me a brief</span></button>
+  </main>
+
+  <nav class="tabs" aria-label="Main">
+    <a class="tab is-on" href="home.html" aria-current="page"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg><span>Home</span></a>
+    <a class="tab" href="briefs.html" aria-label="Briefs"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 12h.01" /> <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /> <path d="M22 13a18.15 18.15 0 0 1-20 0" /> <rect width="20" height="14" x="2" y="6" rx="2" /></svg></a>
+    <button class="tab" type="button" data-soon="Library" aria-label="Library"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg></button>
+    <button class="tab" type="button" data-soon="Profile" aria-label="Profile"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17.925 20.056a6 6 0 0 0-11.851.001" /> <circle cx="12" cy="11" r="4" /> <circle cx="12" cy="12" r="10" /></svg></button>
+  </nav>
+
+  <!-- brief details -->
+  <dialog class="sheet" id="detail" aria-labelledby="d-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+    <div class="sheet__body">
+      <p class="kick" id="d-kick"></p>
+      <h2 class="sheet__title" id="d-title"></h2>
+      <div class="meta" id="d-meta"></div>
+      <p class="sheet__h">What you’ll deliver</p>
+      <ul class="checks" id="d-list"></ul>
+      <p class="progress" id="d-prog" aria-live="polite"></p>
+      <div class="sheet__btns">
+        <button class="pbtn pbtn--primary" type="button" id="d-begin">Begin</button>
+        <button class="pbtn pbtn--ghost" type="button" id="d-save" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" /></svg><span>Save</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- saved briefs -->
+  <dialog class="sheet" id="savedlg" aria-labelledby="s-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="s-title">Saved briefs</h2>
+      <ul class="saved" id="s-list"></ul>
+      <p class="empty" id="s-empty">Nothing saved yet. Tap the bookmark on any brief to keep it here.</p>
+    </div>
+  </dialog>
+
+  <!-- build my own -->
+  <dialog class="sheet" id="builddlg" aria-labelledby="b-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+    <form class="sheet__body" id="b-form">
+      <h2 class="sheet__title" id="b-title">Build my own</h2>
+      <p class="sheet__sub">Pick a craft and a level. Claude does the rest.</p>
+      <p class="sheet__h">Craft</p>
+      <div class="opts" id="b-craft" role="radiogroup" aria-label="Craft"></div>
+      <p class="sheet__h">Level</p>
+      <div class="seg" id="b-level" role="radiogroup" aria-label="Level"></div>
+      <label class="sheet__h" for="b-topic">Topic <span class="opt">(optional)</span></label>
+      <input class="txt" id="b-topic" type="text" maxlength="28" placeholder="e.g. fintech, music, travel" autocomplete="off">
+      <div class="sheet__btns"><button class="pbtn pbtn--primary" type="submit" id="b-go"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></svg><span>Generate</span></button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>

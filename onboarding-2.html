@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – How far along are you?</title>
+  <meta name="description" content="Be honest, we’ll match the difficulty.">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="signin.css">
+  <link rel="stylesheet" href="onboarding.css">
+  <link rel="stylesheet" href="onboarding-2.css">
+  <script src="onboarding-2.js" defer></script>
+</head>
+<body>
+
+  <div class="glow" aria-hidden="true"></div>
+
+  <main class="signin onb onb2">
+    <div class="panel">
+      <header class="top" data-in>
+        <a class="logo" href="index.html" aria-label="BriefDrop home">BRIEFDROP</a>
+      </header>
+
+      <div class="steps" data-in>
+        <span class="steps__sp" aria-hidden="true"></span>
+        <div class="dots dots--from1" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-label="Onboarding progress">
+          <span class="dot"></span><span class="dot is-on"></span><span class="dot"></span>
+        </div>
+        <p class="steps__count">2 of 3</p>
+      </div>
+
+      <div class="head">
+        <h1 class="title">How far along are you?</h1>
+        <p class="sub" id="sub" data-in aria-live="polite">Be honest, we’ll match the difficulty.</p>
+      </div>
+
+      <div class="levels" id="levels" role="radiogroup" aria-labelledby="sub">
+        <button class="level" type="button" role="radio" aria-checked="false" data-level="Just starting"><span class="level__t">Just starting</span><span class="level__d">Learning the basics</span></button>
+        <button class="level" type="button" role="radio" aria-checked="false" data-level="Getting good"><span class="level__t">Getting good</span><span class="level__d">Comfortable with the tools</span></button>
+        <button class="level" type="button" role="radio" aria-checked="false" data-level="Pretty solid"><span class="level__t">Pretty solid</span><span class="level__d">Can handle real projects</span></button>
+        <button class="level" type="button" role="radio" aria-checked="false" data-level="Dangerous"><span class="level__t">Dangerous</span><span class="level__d">Ready for tough constraints</span></button>
+      </div>
+
+      <button class="cta" id="next" type="button" data-in><span class="cta__label">Next</span></button>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
