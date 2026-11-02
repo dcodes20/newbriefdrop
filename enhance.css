@@ -395,7 +395,7 @@ html:has(dialog[open]) { overflow: hidden; }
   .footer__inner > * { position: static; }
   .footer__brand { grid-area: brand; }
   .footer__tag { grid-area: tag; max-width: 340px; }
-  .footer__cta { grid-area: cta; width: 100%; max-width: 340px; }
+  .footer__cta { grid-area: cta; width: fit-content; }
   .footer__nav { grid-area: nav; height: auto; gap: 32px; }
   .footer__art { grid-area: art; justify-self: end; width: 220px; height: 220px; margin-top: -24px; }
   .footer__rule { grid-area: rule; margin-top: 28px; }
