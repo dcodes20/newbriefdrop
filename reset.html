@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Reset password</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="signin.css">
+  <link rel="stylesheet" href="forgot.css">
+  <link rel="stylesheet" href="reset.css">
+  <script src="reset.js" defer></script>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+  <main class="signin fgt rp">
+    <div class="panel">
+      <header class="top top--back rp__bar" data-in>
+        <a class="back" href="forgot-sent.html" aria-label="Back">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
+        </a>
+        <p class="rp__bar-t">Reset Password</p>
+        <span class="rp__bar-s" aria-hidden="true"></span>
+      </header>
+
+      <section id="ask">
+        <div class="head">
+          <h1 class="title">Create a new password</h1>
+          <p class="sub" data-in>Your new password must be different from previously used passwords.</p>
+        </div>
+        <form class="form" id="form" novalidate>
+          <div class="field" data-in>
+            <label class="field__label" for="pw">Enter new password</label>
+            <input id="pw" name="password" type="password" autocomplete="new-password" placeholder="Enter new password" aria-describedby="pw-err" required>
+            <button class="field__toggle" type="button" aria-label="Show password" aria-pressed="false"><svg class="eye" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /> <circle cx="12" cy="12" r="3" /></svg><svg class="eye-off" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" /> <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" /> <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" /> <path d="m2 2 20 20" /></svg></button>
+            <span class="field__bar" aria-hidden="true"></span>
+            <p class="field__err" id="pw-err" role="alert"></p>
+          </div>
+          <div class="field" data-in>
+            <label class="field__label" for="pw2">Confirm new password</label>
+            <input id="pw2" name="confirm" type="password" autocomplete="new-password" placeholder="Confirm new password" aria-describedby="pw2-err" required>
+            <button class="field__toggle" type="button" aria-label="Show confirmation" aria-pressed="false"><svg class="eye" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /> <circle cx="12" cy="12" r="3" /></svg><svg class="eye-off" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" /> <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" /> <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" /> <path d="m2 2 20 20" /></svg></button>
+            <span class="field__bar" aria-hidden="true"></span>
+            <p class="field__err" id="pw2-err" role="alert"></p>
+          </div>
+          <div class="meter" id="meter" data-in aria-live="polite">
+            <div class="meter__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <p class="meter__t" id="meter-t">Use 8+ characters with a letter and a number.</p>
+            <ul class="rules" aria-label="Password requirements">
+              <li data-r="len">8+ characters</li><li data-r="let">A letter</li><li data-r="num">A number</li><li data-r="match">Passwords match</li>
+            </ul>
+          </div>
+          <button class="cta" type="submit" data-in><span class="cta__label">Reset password</span></button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

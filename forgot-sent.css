@@ -1,0 +1,15 @@
+/* BriefDrop – Forgot password success (Figma 272:2388) */
+.sent-page .art { margin: 0 -24px; height: 268px; overflow: hidden; display: flex; justify-content: center; }
+.sent-page .art img { height: 100%; width: auto; max-width: none; object-fit: cover; object-position: 30% 50%; animation: bob 6s ease-in-out infinite; translate: calc(var(--px, 0) * -10px) calc(var(--py, 0) * -6px); transition: translate .25s ease-out; }
+@media (max-width: 440px) { .sent-page .art img { width: 100%; } }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.sent-page .head { margin-top: 0; }
+.sent-page .sub { max-width: 320px; }
+.sent-page .sub b { color: var(--white); overflow-wrap: anywhere; white-space: nowrap; }
+.cta--ghost { margin-top: 64px; background: transparent; border: 1px solid var(--muted); color: var(--soft); }
+.cta--ghost:hover { background: rgba(255,255,255,.06); border-color: var(--cream); box-shadow: 0 14px 32px -16px rgba(249,232,195,.5); filter: none; }
+.again { display: block; width: 100%; margin-top: 64px; padding: 4px 0; font-size: 12px; line-height: 24px; text-align: center; color: var(--muted); }
+.again u { text-underline-offset: 3px; transition: color .2s; }
+.again:hover u, .again:focus-visible u { color: var(--cream); }
+.again[disabled] { cursor: default; }
+@media (min-width: 640px) { .cta--ghost { margin-top: 36px; } .again { margin-top: 24px; } .sent-page .art { margin: 0 -44px; } }

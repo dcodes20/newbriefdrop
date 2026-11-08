@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Saved</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="briefs.css">
+  <link rel="stylesheet" href="saved.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="saved.js" defer></script>
+</head>
+<body>
+  <div class="b-top" id="top">
+    <div class="b-top__in">
+      <header class="s-head">
+        <a class="s-back" id="back" href="briefs.html" aria-label="Back">{{i:chevron-left}}</a>
+        <h1 class="b-title">Saved</h1>
+        <button class="s-edit" id="edit" type="button" aria-pressed="false">Edit</button>
+      </header>
+      <label class="b-search">
+        {{i:search}}
+        <input id="q" type="search" placeholder="Search by skill, industry or keyword…" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
+        <button class="b-clear" id="qclear" type="button" aria-label="Clear search" hidden>{{i:x}}</button>
+      </label>
+      <div class="b-pills" id="pills" role="toolbar" aria-label="Filters"></div>
+    </div>
+  </div>
+
+  <main class="b-main">
+    <div class="b-status" id="status" aria-live="polite"><span id="count">&nbsp;</span></div>
+    <div class="b-grid" id="grid"></div>
+
+    <section class="s-empty" id="empty" hidden aria-live="polite">
+      <div class="s-empty__ico" aria-hidden="true">{{i:bookmark}}</div>
+      <h2 class="s-empty__t" id="empty-t">Nothing saved yet</h2>
+      <p class="s-empty__s" id="empty-s">Tap the bookmark on any brief to keep it here for later.</p>
+      <a class="cta s-empty__cta" id="empty-cta" href="briefs.html"><span class="cta__label">Browse briefs</span></a>
+    </section>
+  </main>
+
+  <div class="s-bar" id="bar" hidden>
+    <button class="s-bar__all" id="selall" type="button">Select all</button>
+    <button class="s-bar__rm" id="rm" type="button" disabled>{{i:trash-2}}<span>Remove</span></button>
+  </div>
+
+  <nav class="tabs" aria-label="Main" id="tabs">
+    <a class="tab" href="home.html" aria-label="Home">{{i:house}}</a>
+    <a class="tab is-on" href="briefs.html" aria-current="page">{{i:briefcase-business}}<span>Briefs</span></a>
+    <button class="tab" type="button" data-soon="Library" aria-label="Library">{{i:layers}}</button>
+    <button class="tab" type="button" data-soon="Profile" aria-label="Profile">{{i:circle-user-round}}</button>
+  </nav>
+
+  <dialog class="sheet" id="detail" aria-labelledby="d-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close>{{i:x}}</button>
+    <div class="sheet__body">
+      <p class="kick" id="d-kick"></p>
+      <h2 class="sheet__title" id="d-title"></h2>
+      <p class="sheet__sum" id="d-sum"></p>
+      <div class="meta" id="d-meta"></div>
+      <p class="sheet__h">What you’ll deliver</p>
+      <ul class="checks" id="d-list"></ul>
+      <p class="progress" id="d-prog" aria-live="polite"></p>
+      <div class="sheet__btns">
+        <button class="pbtn pbtn--primary" type="button" id="d-begin">Begin</button>
+        <button class="pbtn pbtn--ghost" type="button" id="d-save" aria-pressed="true">{{i:bookmark}}<span>Saved</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -78,7 +78,10 @@ body { padding-bottom: 0; }
 .b-none[hidden] { display: none; }
 .b-none__t { font-family: var(--f-display); font-weight: 600; font-size: 18px; }
 .b-none__s { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+.b-none__art { display: block; width: min(100%, 280px); height: auto; margin: 0 0 8px; object-fit: contain; }
+.b-none__art[hidden] { display: none; }
 .b-none .pbtn { flex: none; min-width: 160px; }
+.b-none .pbtn[hidden] { display: none; }
 
 /* sheet extras */
 .sheet__sum { font-size: 15px; line-height: 1.55; color: var(--soft); }

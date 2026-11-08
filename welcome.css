@@ -74,9 +74,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .welcome__actions { width: 100%; max-width: 354px; margin-top: 24px; margin-bottom: auto; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 
 .cta {
-  position: relative; overflow: hidden; isolation: isolate; width: 100%;
+  display: block; position: relative; overflow: hidden; isolation: isolate; width: 100%;
   padding: 19px 20px 18px; border-radius: 16px; background: var(--primary); color: var(--white);
   font-family: var(--f-btn); font-weight: 600; font-size: 16px; line-height: normal;
+  text-align: center; text-decoration: none;
   transition: transform .2s, box-shadow .25s, translate .25s cubic-bezier(.2,.8,.2,1), filter .2s;
 }
 .cta::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;

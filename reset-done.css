@@ -1,0 +1,3 @@
+/* BriefDrop – Reset password success (Figma 274:2740) */
+.sent-page .cta--link { display: grid; place-items: center; margin-top: 64px; text-decoration: none; }
+@media (min-width: 640px) { .sent-page .cta--link { margin-top: 36px; } }

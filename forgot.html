@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Forgot password</title>
+  <meta name="description" content="Continue without entering an email address.">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="signin.css">
+  <link rel="stylesheet" href="forgot.css">
+  <script src="forgot.js" defer></script>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <main class="signin fgt">
+    <div class="panel">
+      <header class="top top--back" data-in>
+        <a class="back" href="signin.html" aria-label="Back to sign in">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
+        </a>
+      </header>
+
+      <section id="ask">
+        <div class="head">
+          <h1 class="title">Forgot your password?</h1>
+          <p class="sub" data-in>You can continue without entering an email address. Password reset emails aren’t connected in this prototype.</p>
+        </div>
+
+        <form class="form" id="form" novalidate>
+          <button class="cta" type="submit" data-in><span class="cta__label">Continue</span></button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

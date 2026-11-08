@@ -1,0 +1,15 @@
+/* BriefDrop – Forgot password (Figma 255:10258). Builds on signin.css. */
+.top--back { text-align: left; margin-left: -8px; }
+.back { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--soft); transition: background-color .2s, color .2s, transform .3s cubic-bezier(.3,1.4,.5,1); }
+.back:hover { background: rgba(255,255,255,.07); color: var(--white); transform: translateX(-3px); }
+.back:active { transform: translateX(-5px) scale(.92); }
+.fgt .head { margin-top: 12px; }
+.fgt .sub { max-width: 320px; }
+.fgt .form { margin-top: 64px; }
+.fgt .field { margin-bottom: 0; }
+.fgt .cta { margin-top: 52px; }
+
+@media (min-width: 640px) { .fgt .form { margin-top: 40px; } .fgt .cta { margin-top: 32px; } }
+@media (prefers-reduced-motion: reduce) {
+  .fgt .title .w { animation: none; }
+}

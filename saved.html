@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Saved</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="briefs.css">
+  <link rel="stylesheet" href="saved.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="saved.js" defer></script>
+</head>
+<body>
+  <div class="b-top" id="top">
+    <div class="b-top__in">
+      <header class="s-head">
+        <a class="s-back" id="back" href="briefs.html" aria-label="Back"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6" /></svg></a>
+        <h1 class="b-title">Saved</h1>
+        <button class="s-edit" id="edit" type="button" aria-pressed="false">Edit</button>
+      </header>
+      <label class="b-search">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /></svg>
+        <input id="q" type="search" placeholder="Search by skill, industry or keyword…" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
+        <button class="b-clear" id="qclear" type="button" aria-label="Clear search" hidden><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+      </label>
+      <div class="b-pills" id="pills" role="toolbar" aria-label="Filters"></div>
+    </div>
+  </div>
+
+  <main class="b-main">
+    <div class="b-status" id="status" aria-live="polite"><span id="count">&nbsp;</span></div>
+    <div class="b-grid" id="grid"></div>
+
+    <section class="s-empty" id="empty" hidden aria-live="polite">
+      <div class="s-empty__ico" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" /></svg></div>
+      <h2 class="s-empty__t" id="empty-t">Nothing saved yet</h2>
+      <p class="s-empty__s" id="empty-s">Tap the bookmark on any brief to keep it here for later.</p>
+      <a class="cta s-empty__cta" id="empty-cta" href="briefs.html"><span class="cta__label">Browse briefs</span></a>
+    </section>
+  </main>
+
+  <div class="s-bar" id="bar" hidden>
+    <button class="s-bar__all" id="selall" type="button">Select all</button>
+    <button class="s-bar__rm" id="rm" type="button" disabled><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 11v6" /> <path d="M14 11v6" /> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /> <path d="M3 6h18" /> <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg><span>Remove</span></button>
+  </div>
+
+  <nav class="tabs" aria-label="Main" id="tabs">
+    <a class="tab" href="home.html" aria-label="Home"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg></a>
+    <a class="tab is-on" href="briefs.html" aria-current="page"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 12h.01" /> <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /> <path d="M22 13a18.15 18.15 0 0 1-20 0" /> <rect width="20" height="14" x="2" y="6" rx="2" /></svg><span>Briefs</span></a>
+    <button class="tab" type="button" data-soon="Library" aria-label="Library"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg></button>
+    <button class="tab" type="button" data-soon="Profile" aria-label="Profile"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17.925 20.056a6 6 0 0 0-11.851.001" /> <circle cx="12" cy="11" r="4" /> <circle cx="12" cy="12" r="10" /></svg></button>
+  </nav>
+
+  <dialog class="sheet" id="detail" aria-labelledby="d-title">
+    <button class="sheet__x" type="button" aria-label="Close" data-close><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+    <div class="sheet__body">
+      <p class="kick" id="d-kick"></p>
+      <h2 class="sheet__title" id="d-title"></h2>
+      <p class="sheet__sum" id="d-sum"></p>
+      <div class="meta" id="d-meta"></div>
+      <p class="sheet__h">What you’ll deliver</p>
+      <ul class="checks" id="d-list"></ul>
+      <p class="progress" id="d-prog" aria-live="polite"></p>
+      <div class="sheet__btns">
+        <button class="pbtn pbtn--primary" type="button" id="d-begin">Begin</button>
+        <button class="pbtn pbtn--ghost" type="button" id="d-save" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" /></svg><span>Saved</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

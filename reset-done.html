@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Password updated</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="signin.css">
+  <link rel="stylesheet" href="forgot.css">
+  <link rel="stylesheet" href="forgot-sent.css">
+  <link rel="stylesheet" href="reset-done.css">
+  <script src="reset-done.js" defer></script>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+  <main class="signin fgt sent-page">
+    <div class="panel">
+      <header class="top top--back" data-in>
+        <a class="back" href="reset.html" aria-label="Back">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
+        </a>
+      </header>
+
+      <div class="art" id="art" data-in>
+        <!-- Placeholder crop of the onboarding artwork: export Figma node 274:2752 as assets/forgot-sent.png for the exact one. -->
+        <img src="./assets/onboarding-done.png" width="668" height="444" alt="A designer sitting on the floor with a laptop, surrounded by Behance, GitHub and export icons.">
+      </div>
+
+      <div class="head">
+        <h1 class="title">Password updated</h1>
+        <p class="sub" data-in>Your password has been reset successfully. You can now sign in with your new password.</p>
+      </div>
+      <a class="cta cta--link" id="go" href="signin.html" data-in><span class="cta__label">Back to Sign in</span></a>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -259,8 +259,54 @@
     bell.classList.add('is-read'); bell.setAttribute('aria-label', 'Notifications');
     say(was ? 'You’re all caught up.' : 'New brief drops are ready for you.');
   });
-  const streak = $('#streak');
-  streak.addEventListener('click', () => { streak.classList.remove('hot'); void streak.offsetWidth; streak.classList.add('hot'); say('4-day streak. Start a brief today to keep it going.'); });
+  const streak = $('#streak'), streakDialog = $('#streak-dialog');
+  const freezeGo = $('#fz-go'), freezeNo = $('#fz-no');
+  let freezeCloseTimer = 0;
+  const weekId = () => {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() - ((date.getDay() + 6) % 7));
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  };
+  streak.addEventListener('click', () => {
+    clearTimeout(freezeCloseTimer);
+    const freeze = store.get('briefdrop.freeze', {});
+    const used = freeze.week === weekId() && freeze.used;
+    $('#fz-title').textContent = used ? 'Streak already frozen' : 'One free freeze this week';
+    $('#fz-copy').textContent = used
+      ? 'You’ve used this week’s free freeze. A new one arrives on Monday.'
+      : 'Use it so a bad week doesn’t kill your streak.';
+    freezeGo.disabled = used;
+    freezeGo.textContent = used ? 'Frozen' : 'Freeze this week';
+    freezeNo.textContent = used ? 'Back to Home' : 'Not now';
+    streakDialog.showModal();
+  });
+  freezeNo.addEventListener('click', () => streakDialog.close());
+  streakDialog.addEventListener('close', () => clearTimeout(freezeCloseTimer));
+  freezeGo.addEventListener('click', () => {
+    if (freezeGo.disabled) return;
+    freezeGo.disabled = true;
+    freezeGo.textContent = 'Frozen';
+    store.set('briefdrop.freeze', { week: weekId(), used: true });
+    $('#fz-title').textContent = 'Streak frozen';
+    $('#fz-copy').textContent = 'A missed day this week won’t break your streak.';
+    if (!reduce) {
+      const bounds = $('.fz__flame', streakDialog).getBoundingClientRect();
+      for (let i = 0; i < 14; i++) {
+        const flake = document.createElement('i');
+        flake.className = 'fz-flake';
+        flake.textContent = i % 3 ? '✦' : '❄';
+        flake.style.cssText = `position:fixed;left:${bounds.left + bounds.width / 2}px;top:${bounds.top + bounds.height / 2}px;pointer-events:none;z-index:100`;
+        document.body.append(flake);
+        const angle = (i / 14) * Math.PI * 2, distance = 50 + Math.random() * 70;
+        flake.animate(
+          [{ transform: 'translate(-50%,-50%) scale(.5)', opacity: 1 }, { transform: `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance + 30}px)) scale(1) rotate(180deg)`, opacity: 0 }],
+          { duration: 1000 + Math.random() * 500, easing: 'cubic-bezier(.2,.7,.4,1)' }
+        ).onfinish = () => flake.remove();
+      }
+    }
+    freezeCloseTimer = setTimeout(() => { if (streakDialog.open) streakDialog.close(); }, reduce ? 0 : 1400);
+  });
   $$('[data-soon]').forEach((t) => t.addEventListener('click', () => {
     t.classList.remove('bump'); void t.offsetWidth; t.classList.add('bump');
     say(`${t.dataset.soon} isn’t built in this prototype yet.`);

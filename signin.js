@@ -87,7 +87,6 @@
   });
 
   /* 5 ─ Everything else that has no backend yet ──────────────────────────── */
-  $('#forgot').addEventListener('click', (e) => { e.preventDefault(); say('Password reset isn’t connected in this prototype yet.'); });
   $$('.social__btn').forEach((b) => b.addEventListener('click', () => say(`Continue with ${b.dataset.provider} isn’t connected in this prototype yet.`)));
 
   /* 6 ─ Desktop niceties: glow follows the pointer, CTA is a little magnetic ── */

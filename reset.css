@@ -1,0 +1,28 @@
+/* BriefDrop – Reset password (Figma 274:2659). Builds on signin.css + forgot.css. */
+.rp__bar { display: flex; align-items: center; justify-content: space-between; margin-left: -8px; margin-right: -8px; }
+.rp__bar-t { font-family: var(--f-display); font-weight: 600; font-size: 20px; line-height: normal; text-align: center; flex: 1; }
+.rp__bar-s { width: 40px; flex: none; }
+.rp .head { margin-top: 14px; }
+.rp .form { margin-top: 40px; }
+.rp .form .field { margin-bottom: 16px; }
+.rp .cta { margin-top: 28px; }
+.rp .form .field:has(.field__toggle) input { padding-right: 52px; }
+
+.meter { margin-top: 20px; padding: 0 4px; }
+.meter__bars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.meter__bars i { height: 4px; border-radius: 4px; background: var(--ink); transform-origin: left; transition: background-color .3s, transform .4s cubic-bezier(.3,1.5,.5,1); }
+.meter[data-s="1"] .meter__bars i:nth-child(-n+1) { background: var(--error); }
+.meter[data-s="2"] .meter__bars i:nth-child(-n+2) { background: #faae1f; }
+.meter[data-s="3"] .meter__bars i:nth-child(-n+3) { background: #8fd46a; }
+.meter[data-s="4"] .meter__bars i { background: #3ecf8e; }
+.meter__bars i.pop { animation: barpop .4s cubic-bezier(.3,1.6,.5,1); }
+@keyframes barpop { 50% { transform: scaleY(2.2); } }
+.meter__t { margin-top: 10px; font-size: 12px; line-height: 16px; color: var(--muted); transition: color .3s; }
+.meter[data-s="4"] .meter__t { color: #3ecf8e; }
+.rules { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); }
+.rules li { display: inline-flex; align-items: center; gap: 6px; transition: color .25s; }
+.rules li::before { content: ""; width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--ink); transition: background .25s, border-color .25s, transform .35s cubic-bezier(.3,1.8,.5,1); }
+.rules li.ok { color: var(--soft); }
+.rules li.ok::before { background: #3ecf8e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='m3 6.2 2 2L9 4' fill='none' stroke='%230a0a0a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; border-color: #3ecf8e; transform: scale(1.15); }
+
+@media (min-width: 640px) { .rp .form { margin-top: 28px; } .rp .cta { margin-top: 24px; } }
