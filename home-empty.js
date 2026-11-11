@@ -48,7 +48,5 @@
   });
 
   /* header + nav */
-  const bell = $('#bell');
-  bell.addEventListener('click', () => { bell.classList.remove('ring'); void bell.offsetWidth; bell.classList.add('ring'); say('No notifications yet.'); });
   $$('[data-soon]').forEach((t) => t.addEventListener('click', () => { t.classList.remove('bump'); void t.offsetWidth; t.classList.add('bump'); say(`${t.dataset.soon} isn’t built in this prototype yet.`); }));
 })();

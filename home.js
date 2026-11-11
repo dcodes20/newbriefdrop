@@ -38,11 +38,11 @@
     <div class="card__top"><p class="kick">${kick('YOUR NEXT BEST BRIEF', b)}</p>${srcHTML(b)}</div>
     <h2 class="card__title" data-title>${esc(b.title)}</h2>
     ${metaHTML(b)}
-    <div class="card__act"><button class="cta cta--card" type="button" data-start="${esc(b.id)}">Start this one</button></div>`;
+    <div class="card__act"><a class="cta cta--card" href="project.html" data-start="${esc(b.id)}">Start this one</a></div>`;
   const dailyHTML = (b) => `${bmHTML(b)}
     <div class="card__top"><p class="kick">${kick('DAILY', b)}</p></div>
     <h3 class="card__title" data-title>${esc(b.title)}</h3>
-    <div class="card__foot">${metaHTML(b)}<button class="cta cta--sm" type="button" data-start="${esc(b.id)}">Start</button></div>`;
+    <div class="card__foot">${metaHTML(b)}<a class="cta cta--sm" href="project.html" data-start="${esc(b.id)}">Start</a></div>`;
   const skeleton = (withBtn) => `<div class="sk sk--k"></div><div class="sk sk--t"></div><div class="sk sk--t sk--s"></div><div class="sk sk--m"></div>${withBtn ? '<div class="sk sk--b"></div>' : ''}<p class="thinking"><i></i><i></i><i></i><span>Thinking up a brief…</span></p>`;
 
   function splitTitle(el) {
@@ -58,11 +58,11 @@
   }
 
   function paintHero() {
-    hero.innerHTML = heroHTML(S.hero); hero.dataset.id = S.hero.id; splitTitle($('[data-title]', hero));
+    hero.innerHTML = heroHTML(S.hero); hero.dataset.id = S.hero.id; hero.tabIndex = 0; splitTitle($('[data-title]', hero));
   }
   function cardEl(b, i) {
     const a = document.createElement('article');
-    a.className = 'card'; a.dataset.id = b.id; a.style.setProperty('--i', i);
+    a.className = 'card'; a.dataset.id = b.id; a.tabIndex = 0; a.style.setProperty('--i', i);
     a.innerHTML = dailyHTML(b); splitTitle($('[data-title]', a)); return a;
   }
   function paintDaily() {
@@ -192,12 +192,26 @@
   /* ── global clicks ─────────────────────────────────────────────────── */
   document.addEventListener('click', (e) => {
     const st = e.target.closest('[data-start]');
-    if (st) { const b = st.dataset.start ? find(st.dataset.start) : null; if (b) openDetail(b); return; }
+    if (st) { const b = st.dataset.start ? find(st.dataset.start) : null; if (b) sessionStorage.setItem('briefdrop.project', JSON.stringify(b)); return; }
     const bm = e.target.closest('[data-bm]');
     if (bm) { const b = find(bm.dataset.bm); if (b) toggleSave(b); return; }
+    const card = e.target.closest('.home .card');
+    if (card && !e.target.closest('a, button')) {
+      const b = card.dataset.id ? find(card.dataset.id) : null;
+      if (b) sessionStorage.setItem('briefdrop.project', JSON.stringify(b));
+      location.href = 'project.html';
+      return;
+    }
     const cl = e.target.closest('[data-close]');
     if (cl) { cl.closest('dialog').close(); return; }
     if (e.target instanceof HTMLDialogElement) e.target.close();       // backdrop
+  });
+  document.addEventListener('keydown', (e) => {
+    if ((e.key !== 'Enter' && e.key !== ' ') || !e.target.matches('.home .card')) return;
+    e.preventDefault();
+    const b = e.target.dataset.id ? find(e.target.dataset.id) : null;
+    if (b) sessionStorage.setItem('briefdrop.project', JSON.stringify(b));
+    location.href = 'project.html';
   });
 
   /* surprise me + show me a brief */
@@ -235,13 +249,6 @@
   });
 
   /* ── header + nav ──────────────────────────────────────────────────── */
-  const bell = $('#bell');
-  bell.addEventListener('click', () => {
-    bell.classList.remove('ring'); void bell.offsetWidth; bell.classList.add('ring');
-    const was = bell.classList.contains('is-read');
-    bell.classList.add('is-read'); bell.setAttribute('aria-label', 'Notifications');
-    say(was ? 'You’re all caught up.' : 'New brief drops are ready for you.');
-  });
   const streak = $('#streak'), streakDialog = $('#streak-dialog');
   const freezeGo = $('#fz-go'), freezeNo = $('#fz-no');
   let freezeCloseTimer = 0;

@@ -251,10 +251,15 @@
     const bm = e.target.closest('[data-bm]');
     if (bm) { e.stopPropagation(); const b = findBrief(bm.dataset.bm); if (b) toggleSave(b); return; }
     const card = e.target.closest('.b-card[data-id]'); if (!card) return;
-    const b = findBrief(card.dataset.id); if (b) openDetail(b);
+    const b = findBrief(card.dataset.id);
+    if (b) { sessionStorage.setItem('briefdrop.project', JSON.stringify(b)); location.href = 'project.html'; }
   });
   grid.addEventListener('keydown', (e) => {
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.b-card[data-id]')) { e.preventDefault(); const b = findBrief(e.target.dataset.id); if (b) openDetail(b); }
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.b-card[data-id]')) {
+      e.preventDefault();
+      const b = findBrief(e.target.dataset.id);
+      if (b) { sessionStorage.setItem('briefdrop.project', JSON.stringify(b)); location.href = 'project.html'; }
+    }
   });
   document.addEventListener('click', (e) => {
     const cl = e.target.closest('[data-close]'); if (cl) { cl.closest('dialog').close(); return; }

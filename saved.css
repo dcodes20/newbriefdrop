@@ -22,7 +22,7 @@
 .editing .s-check { display: grid; margin-left: auto; }
 .editing .s-meta { padding-right: 0; }
 .editing .s-card .b-bm { display: none; }
-.editing .s-card { cursor: pointer; }
+.s-card { cursor: pointer; }
 .s-card.is-sel { border-color: var(--primary); background: #101a2e; }
 .s-card.is-sel .s-check { background: var(--primary); border-color: var(--primary); color: #fff; transform: scale(1.1); }
 .s-top { display: flex; align-items: center; gap: 8px; }

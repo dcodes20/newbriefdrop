@@ -108,7 +108,8 @@
     if (S.edit) { toggleSel(id); return; }
     const bm = e.target.closest('[data-bm]');
     if (bm) { e.stopPropagation(); removeIds(new Set([id]), 'Removed from saved.'); return; }
-    const b = saved.find((x) => x.id === id); if (b) openDetail(norm(b));
+    const b = saved.find((x) => x.id === id);
+    if (b) { sessionStorage.setItem('briefdrop.project', JSON.stringify(norm(b))); location.href = 'project.html'; }
   });
   grid.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.s-card')) { e.preventDefault(); e.target.click(); } });
 

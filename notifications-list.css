@@ -1,0 +1,25 @@
+/* BriefDrop – Notifications list (Figma 251:3431). Overrides the card look from notifications.css. */
+.n-list { gap: 12px; padding-top: 12px; }
+.n-item { border: 1.5px solid var(--ink); border-radius: 16px; background: var(--card); }
+.n-item:hover { border-color: #3a3a3a; transform: translateY(-2px); }
+.n-item:active { transform: scale(.99); }
+.n-row { align-items: center; gap: 14px; padding: 16px; }
+.n-item.is-unread .n-row::after { top: 50%; right: 8px; width: 6px; height: 6px; margin-top: -3px; box-shadow: 0 0 8px rgba(24,90,219,.9); }
+.n-ib { width: 24px; height: 24px; border-radius: 0; background: none; color: var(--soft); transition: transform .35s var(--spring), color .2s; }
+.n-ib .ic { width: 24px; height: 24px; }
+.n-item:hover .n-ib { transform: rotate(-8deg) scale(1.12); color: var(--white); }
+.n-ib--streak, .n-ib--save { background: none; }
+.n-ib--streak { color: var(--soft); }
+.n-item:hover .n-ib--streak { color: var(--flame); }
+.n-t { font-size: 16px; line-height: normal; font-weight: 600; }
+.n-d { font-size: 12px; line-height: normal; margin-top: 4px; }
+.n-body { display: flex; flex-direction: column; gap: 0; }
+.n-ts { flex: none; display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 56px; color: #686860; font-size: 12px; line-height: normal; text-align: center; }
+.n-ts .ic { width: 24px; height: 24px; }
+.n-item.is-unread .n-ts { color: var(--muted); }
+.n-item:hover .n-ts .ic { animation: tick .8s ease; transform-origin: 50% 55%; }
+@keyframes tick { 25% { transform: rotate(-18deg); } 55% { transform: rotate(14deg); } 100% { transform: none; } }
+.n-item:not(.is-unread) .n-t { color: var(--soft); font-weight: 600; }
+.n-x { top: 6px; right: 6px; width: 26px; height: 26px; opacity: 0; background: rgba(10,10,10,.8); }
+.n-item:hover .n-x, .n-x:focus-visible { opacity: 1; }
+@media (max-width: 359px) { .n-ts { min-width: 48px; } .n-t { font-size: 15px; } }

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Project</title>
+  <meta name="briefdrop-api" content="/api/briefs">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="project.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="project.js" defer></script>
+</head>
+<body>
+  <header class="p-nav" id="nav">
+    <div class="p-nav__in">
+      <a class="p-ico" id="back" href="briefs.html" aria-label="Back"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6" /></svg></a>
+      <div class="p-acts">
+        <button class="p-ico" id="bm" type="button" aria-pressed="false" aria-label="Save brief"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" /></svg></button>
+        <button class="p-ico" id="share" type="button" aria-label="Share"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 17 5-5-5-5" /> <path d="M4 18v-2a4 4 0 0 1 4-4h12" /></svg></button>
+        <div class="p-more">
+          <button class="p-ico" id="more" type="button" aria-label="More options" aria-haspopup="menu" aria-expanded="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="1" /> <circle cx="19" cy="12" r="1" /> <circle cx="5" cy="12" r="1" /></svg></button>
+          <div class="p-menu" id="menu" role="menu" hidden>
+            <button type="button" role="menuitem" data-act="copy">Copy link</button>
+            <button type="button" role="menuitem" data-act="remix">Remix this brief</button>
+            <button type="button" role="menuitem" data-act="reroll">Reroll</button>
+            <button type="button" role="menuitem" data-act="reset">Reset progress</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <i class="p-prog" id="prog" aria-hidden="true"></i>
+  </header>
+
+  <main class="p-main" id="main">
+    <article class="p-doc" id="doc" aria-live="polite"></article>
+  </main>
+
+  <footer class="p-bar" id="bar">
+    <div class="p-bar__in">
+      <button class="p-btn p-btn--primary" id="start" type="button"><span>Start</span></button>
+      <button class="p-btn" id="remix" type="button"><span>Remix</span></button>
+      <button class="p-btn" id="reroll" type="button"><span>Reroll</span></button>
+      <button class="p-btn" id="later" type="button" aria-pressed="false"><span>Save for later</span></button>
+    </div>
+  </footer>
+
+  <!-- remix sheet (Figma 251:3843) -->
+  <dialog class="sheet rx" id="rx" aria-labelledby="rx-t">
+    <div class="rx__body">
+      <h2 class="rx__t" id="rx-t">Remix this brief</h2>
+      <div class="rx__opts" id="rx-opts" role="group" aria-label="Remix options">
+        <button type="button" class="rx__o" data-k="industry" aria-pressed="false"><span>New industry</span><i><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5" /></svg></i></button>
+        <button type="button" class="rx__o" data-k="audience" aria-pressed="false"><span>New audience</span><i><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5" /></svg></i></button>
+        <button type="button" class="rx__o" data-k="wild" aria-pressed="false"><span>Wilder constraint</span><i><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5" /></svg></i></button>
+        <button type="button" class="rx__o" data-k="easier" aria-pressed="false"><span>Easier</span><i><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5" /></svg></i></button>
+        <button type="button" class="rx__o" data-k="harder" aria-pressed="false"><span>Harder</span><i><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5" /></svg></i></button>
+      </div>
+      <p class="rx__hint" id="rx-hint">Pick one or more. Nothing picked? We’ll surprise you.</p>
+    </div>
+    <div class="rx__bar"><button class="p-btn p-btn--primary" id="rx-apply" type="button"><span>Apply remix</span></button></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

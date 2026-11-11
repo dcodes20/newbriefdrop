@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Notifications</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="notifications.css">
+  <script src="icons.js" defer></script>
+  <script src="notifications.js" defer></script>
+</head>
+<body>
+  <header class="n-top" id="top">
+    <div class="n-top__in">
+      <a class="n-ico" id="back" href="home.html" aria-label="Back">{{i:chevron-left}}</a>
+      <h1 class="n-title">Notifications</h1>
+      <div class="n-more">
+        <button class="n-ico" id="filter" type="button" aria-label="Filter notifications" aria-haspopup="menu" aria-expanded="false">{{i:funnel}}<i class="n-dot" aria-hidden="true"></i></button>
+        <div class="n-menu" id="menu" role="menu" hidden>
+          <button type="button" role="menuitemradio" aria-checked="true" data-f="all">All</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-f="unread">Unread</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-f="drop">Daily Drops</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-f="streak">Streaks</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="n-main">
+    <div class="n-tools" id="tools" hidden>
+      <span class="n-count" id="count" aria-live="polite"></span>
+      <button type="button" id="readall">{{i:check-check}}<span>Mark all read</span></button>
+      <button type="button" id="clearall">{{i:trash-2}}<span>Clear all</span></button>
+    </div>
+    <ul class="n-list" id="list"></ul>
+
+    <section class="n-empty" id="empty" aria-live="polite">
+      <div class="n-art" id="art"><div class="n-art__f"><!-- Placeholder artwork: export Figma node 251:3549 as assets/no-notifications.png and change this src. --><img src="assets/no-notifications.svg" width="402" height="402" alt="Someone relaxing on the floor beneath a muted bell."></div></div>
+      <div class="n-copy">
+        <h2 class="n-et" id="et">You’re all caught up</h2>
+        <p class="n-es" id="es">New Daily Drops and streak reminders will appear here.</p>
+        <p class="n-ep" id="ep">You can manage notification preferences in <button type="button" class="n-link" id="settings">Settings</button></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
