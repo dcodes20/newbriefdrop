@@ -25,6 +25,7 @@
   let saved = store.get('briefdrop.saved', []); if (!Array.isArray(saved)) saved = [];
   let started = new Set(store.get('briefdrop.started', []));
   const S = { pool: null, filters: new Set(), q: '', sort: 'foryou', busy: false };
+  if (new URLSearchParams(location.search).get('filter') === 'saved') S.filters.add('saved');
   const isSaved = (b) => saved.some((s) => s.id === b.id || s.title === b.title);
   const mins = (b) => window.BriefAI.minutes(b.time);
 

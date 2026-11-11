@@ -1,0 +1,53 @@
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --white: #fff;
+  --soft: #e8e8e8;
+  --muted: #a0a0a0;
+  --primary: #7aa5ff;
+  --cream: #f9e8c3;
+  --line: #292929;
+  --surface: #141414;
+  --f-display: "Unbounded", system-ui, sans-serif;
+  --f-body: "Nunito", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; min-height: 100dvh; background: var(--bg); color: var(--white); font-family: var(--f-body); }
+a { color: var(--primary); }
+a:focus-visible { outline: 2px solid var(--cream); outline-offset: 4px; }
+
+.legal-top {
+  width: min(100% - 40px, 920px);
+  min-height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.legal-brand { color: var(--white); font-family: var(--f-display); font-size: 15px; font-weight: 700; letter-spacing: .06em; text-decoration: none; }
+.legal-back { color: var(--soft); font-size: 14px; text-decoration: none; }
+.legal-back:hover, .legal-switch a:hover { color: var(--cream); }
+
+.legal { width: min(100% - 40px, 760px); margin: 0 auto; padding: 64px 0 96px; }
+.legal-kicker { color: var(--primary); font-size: 12px; font-weight: 800; letter-spacing: .14em; }
+.legal h1 { margin: 12px 0 8px; font-family: var(--f-display); font-size: clamp(28px, 7vw, 42px); line-height: 1.2; }
+.legal-updated { margin-bottom: 28px; color: var(--muted); font-size: 14px; }
+.legal p, .legal li { color: var(--soft); font-size: 16px; line-height: 1.75; }
+.legal > p + p { margin-top: 16px; }
+.legal h2 { margin: 34px 0 10px; font-family: var(--f-display); font-size: 18px; line-height: 1.45; }
+.legal ul { margin: 12px 0 20px; padding-left: 24px; }
+.legal li { padding-left: 4px; margin: 8px 0; }
+.legal-note { margin: 0 0 28px; padding: 16px 18px; border: 1px solid rgba(122,165,255,.35); border-radius: 12px; background: rgba(122,165,255,.08); }
+.legal-note strong { color: var(--white); }
+.legal-switch { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); }
+.legal-switch a { color: var(--soft); font-weight: 700; text-decoration: none; }
+.legal-switch a[aria-current="page"] { color: var(--primary); }
+
+@media (max-width: 480px) {
+  .legal-top, .legal { width: min(100% - 32px, 760px); }
+  .legal { padding-top: 42px; }
+  .legal p, .legal li { font-size: 15px; }
+}

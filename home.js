@@ -160,26 +160,9 @@
     const i = saved.findIndex((s) => s.id === b.id || s.title === b.title);
     if (i >= 0) { saved.splice(i, 1); say('Removed from saved.'); } else { saved.unshift(b); say('Saved.'); }
     store.set('briefdrop.saved', saved);
-    repaintMarks(); paintSavedList();
+    repaintMarks();
     $$(`[data-bm="${CSS.escape(b.id)}"]`).forEach((btn) => { btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); });
   }
-
-  /* ── saved sheet ───────────────────────────────────────────────────── */
-  const dlgS = $('#savedlg');
-  function paintSavedList() {
-    const ul = $('#s-list'); ul.replaceChildren();
-    saved.forEach((b) => {
-      const li = document.createElement('li');
-      li.innerHTML = `<button class="row" type="button" data-open="${esc(b.id)}"><b>${esc(b.title)}</b>${metaHTML(b)}</button><button class="rm" type="button" data-rm="${esc(b.id)}" aria-label="Remove from saved">${IC.x || ''}</button>`;
-      ul.append(li);
-    });
-  }
-  $('#saved').addEventListener('click', () => { paintSavedList(); dlgS.showModal(); });
-  $('#s-list').addEventListener('click', (e) => {
-    const rm = e.target.closest('[data-rm]'), op = e.target.closest('[data-open]');
-    if (rm) { const b = saved.find((s) => s.id === rm.dataset.rm); if (b) toggleSave(b); }
-    else if (op) { const b = saved.find((s) => s.id === op.dataset.open); if (b) { dlgS.close(); openDetail(b); } }
-  });
 
   /* ── build my own ──────────────────────────────────────────────────── */
   const dlgB = $('#builddlg');

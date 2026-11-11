@@ -97,7 +97,6 @@
   /* 4 ─ Terms */
   const terms = $('#terms'), agree = $('#agree');
   agree.addEventListener('change', () => { if (agree.checked) terms.classList.remove('is-invalid'); });
-  $$('.terms a').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); say(`${a.dataset.doc} page isn’t connected in this prototype yet.`); }));
 
   /* 5 ─ Submit */
   const cta = $('.cta', form);

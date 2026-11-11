@@ -54,7 +54,7 @@
 
     <div class="quick">
       <button class="tile" id="surprise" type="button" style="--r:-4deg"><span class="tile__ic" style="--ir:0deg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="12" height="12" x="2" y="10" rx="2" ry="2" /> <path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6" /> <path d="M6 18h.01" /> <path d="M10 14h.01" /> <path d="M15 6h.01" /> <path d="M18 9h.01" /></svg></span><span>Surprise me</span></button>
-      <button class="tile" id="saved" type="button" style="--r:0deg"><span class="tile__ic" style="--ir:8deg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" /></svg><b class="tile__n" id="saved-n" hidden>0</b></span><span>Saved briefs</span></button>
+      <a class="tile" id="saved" href="briefs.html?filter=saved" style="--r:0deg"><span class="tile__ic" style="--ir:8deg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" /></svg><b class="tile__n" id="saved-n" hidden>0</b></span><span>Saved briefs</span></a>
       <button class="tile" id="build" type="button" style="--r:4deg"><span class="tile__ic" style="--ir:-8deg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z" /></svg></span><span>Build my own</span></button>
     </div>
 
@@ -82,16 +82,6 @@
         <button class="pbtn pbtn--primary" type="button" id="d-begin">Begin</button>
         <button class="pbtn pbtn--ghost" type="button" id="d-save" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" /></svg><span>Save</span></button>
       </div>
-    </div>
-  </dialog>
-
-  <!-- saved briefs -->
-  <dialog class="sheet" id="savedlg" aria-labelledby="s-title">
-    <button class="sheet__x" type="button" aria-label="Close" data-close><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
-    <div class="sheet__body">
-      <h2 class="sheet__title" id="s-title">Saved briefs</h2>
-      <ul class="saved" id="s-list"></ul>
-      <p class="empty" id="s-empty">Nothing saved yet. Tap the bookmark on any brief to keep it here.</p>
     </div>
   </dialog>
 
