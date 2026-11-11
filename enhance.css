@@ -58,6 +58,7 @@ body { overflow-x: clip; -webkit-tap-highlight-color: transparent; }
 .nav.is-stuck .nav__inner { padding-block: 10px; }
 .nav__brand { transition: opacity .2s; }
 .nav__brand:hover { opacity: .8; }
+.nav__brand-text { display: none; }
 
 .nav__links { display: none; }
 .nav__links a {
@@ -300,6 +301,7 @@ html:has(dialog[open]) { overflow: hidden; }
    --------------------------------------------------------------------- */
 @media (min-width: 900px) {
   .nav__inner { max-width: 1120px; padding: 18px 40px; }
+  .nav__brand-text { display: inline; }
   .nav__links { display: flex; gap: 32px; }
   .nav__menu, .nav__panel { display: none; }
 

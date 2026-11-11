@@ -23,8 +23,9 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 .signin { position: relative; z-index: 1; min-height: 100dvh; display: flex; justify-content: center; overflow-x: clip; }
 .panel { width: 100%; max-width: 402px; padding: max(26px, env(safe-area-inset-top)) 24px max(40px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; }
 .top { text-align: center; }
-.logo { display: inline-block; line-height: 0; text-decoration: none; transition: opacity .2s; }
+.logo { display: inline-flex; align-items: center; gap: 8px; line-height: 1; text-decoration: none; transition: opacity .2s; }
 .logo img { display: block; width: 40px; height: auto; }
+.logo__wordmark { display: none; font-family: var(--f-logo); font-weight: 800; font-size: 16px; line-height: 1; letter-spacing: .64px; color: var(--white); }
 .logo:hover { opacity: .8; }
 
 .head { margin-top: 42px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
@@ -141,6 +142,10 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
   .head { margin-top: 34px; }
   .form { margin-top: 36px; }
   .social { margin-top: 36px; }
+}
+
+@media (min-width: 768px) {
+  .logo__wordmark { display: inline; }
 }
 
 /* short laptop screens: tighten the card so it fits without scrolling */

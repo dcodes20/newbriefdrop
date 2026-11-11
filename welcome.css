@@ -47,9 +47,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 
 .logo {
-  line-height: 0; text-decoration: none; transition: opacity .2s;
+  display: inline-flex; align-items: center; gap: 8px;
+  line-height: 1; text-decoration: none; transition: opacity .2s;
 }
 .logo img { display: block; width: 40px; height: auto; }
+.logo__wordmark { display: none; font-family: var(--f-logo); font-weight: 800; font-size: 16px; line-height: 1; letter-spacing: .64px; color: var(--white); }
 .logo:hover { opacity: .8; }
 
 .welcome__top { margin-bottom: 42px; }
@@ -184,6 +186,10 @@ html:has(dialog[open]) { overflow: hidden; }
   .drop { margin: auto; border-bottom: 1px solid rgba(249,232,195,.25); border-radius: 24px; box-shadow: 0 40px 120px -20px rgba(0,0,0,.85); }
   .drop[open] { animation: card-drop .7s cubic-bezier(.3,1.35,.5,1); }
   @keyframes card-drop { from { opacity: 0; transform: translateY(-90px) rotate(-6deg) scale(.92); } }
+}
+
+@media (min-width: 768px) {
+  .logo__wordmark { display: inline; }
 }
 
 /* ---------------------------------------------------------------- desktop */
