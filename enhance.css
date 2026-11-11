@@ -56,8 +56,8 @@ body { overflow-x: clip; -webkit-tap-highlight-color: transparent; }
 }
 .nav__inner { transition: padding .3s; }
 .nav.is-stuck .nav__inner { padding-block: 10px; }
-.nav__brand { transition: letter-spacing .3s, color .3s; }
-.nav__brand:hover { letter-spacing: 2px; color: var(--cream); }
+.nav__brand { transition: opacity .2s; }
+.nav__brand:hover { opacity: .8; }
 
 .nav__links { display: none; }
 .nav__links a {

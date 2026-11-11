@@ -27,7 +27,8 @@ a:focus-visible { outline: 2px solid var(--cream); outline-offset: 4px; }
   gap: 20px;
   border-bottom: 1px solid var(--line);
 }
-.legal-brand { color: var(--white); font-family: var(--f-display); font-size: 15px; font-weight: 700; letter-spacing: .06em; text-decoration: none; }
+.legal-brand { display: flex; align-items: center; text-decoration: none; }
+.legal-brand img { display: block; width: 36px; height: auto; }
 .legal-back { color: var(--soft); font-size: 14px; text-decoration: none; }
 .legal-back:hover, .legal-switch a:hover { color: var(--cream); }
 
