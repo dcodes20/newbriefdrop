@@ -104,7 +104,7 @@
     paintHero(); paintDaily(); repaintMarks(); S.busy = false;
   }
 
-  async function swapHero(opts, { openAfter = false } = {}) {
+  async function swapHero(opts) {
     if (S.busy) return null;
     S.busy = true;
     hero.classList.add('is-swapping');
@@ -115,7 +115,6 @@
     } finally { S.busy = false; }
     paintHero(); repaintMarks();
     if (!reduce && hero.animate) hero.animate([{ transform: 'scale(.97) rotate(-.6deg)' }, { transform: 'scale(1) rotate(0)' }], { duration: 450, easing: 'cubic-bezier(.3,1.5,.5,1)' });
-    if (openAfter) openDetail(S.hero);
     return S.hero;
   }
 
@@ -164,31 +163,6 @@
     $$(`[data-bm="${CSS.escape(b.id)}"]`).forEach((btn) => { btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); });
   }
 
-  /* ── build my own ──────────────────────────────────────────────────── */
-  const dlgB = $('#builddlg');
-  const pickState = { craft: '', level: '' };
-  function radios(container, items, key) {
-    container.replaceChildren();
-    items.forEach((t) => {
-      const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', 'false'); b.textContent = t;
-      b.addEventListener('click', () => {
-        pickState[key] = pickState[key] === t ? '' : t;          // tap again to clear
-        $$('button', container).forEach((x) => x.setAttribute('aria-checked', String(x.textContent === pickState[key])));
-      });
-      container.append(b);
-    });
-  }
-  radios($('#b-craft'), window.BriefAI.DISCIPLINES, 'craft');
-  radios($('#b-level'), window.BriefAI.LEVELS, 'level');
-  $('#build').addEventListener('click', () => dlgB.showModal());
-  $('#b-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (S.busy) return;
-    const opts = { discipline: pickState.craft, level: pickState.level, topic: $('#b-topic').value };
-    dlgB.close(); toHero();
-    await swapHero(opts);
-  });
-
   /* ── global clicks ─────────────────────────────────────────────────── */
   document.addEventListener('click', (e) => {
     const st = e.target.closest('[data-start]');
@@ -225,7 +199,12 @@
   show.addEventListener('click', async () => {
     if (S.busy) return;
     show.disabled = true; show.classList.add('is-loading'); showLabel.textContent = 'Finding one';
-    try { await swapHero({}, { openAfter: true }); }
+    try {
+      const brief = await swapHero({});
+      if (!brief || !brief.id) throw new Error('No brief was generated.');
+      sessionStorage.setItem('briefdrop.project', JSON.stringify(brief));
+      location.href = 'project.html?id=' + encodeURIComponent(brief.id);
+    } catch (_) { say('Couldn’t open a brief right now. Try again.'); }
     finally { show.disabled = false; show.classList.remove('is-loading'); showLabel.textContent = 'Show me a brief'; }
   });
 

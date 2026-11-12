@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Creating your brief</title>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="build-flow.css">
+  <script src="brief-ai.js" defer></script>
+  <script src="build-loading.js" defer></script>
+</head>
+<body class="build-flow">
+  <main class="flow-main">
+    <section class="flow-card" id="loading" role="status" aria-live="polite">
+      <span class="flow-spinner" aria-hidden="true"></span>
+      <p class="flow-eyebrow">BriefDrop</p>
+      <h1>Creating your brief</h1>
+      <p class="flow-copy">Putting the right challenge together for you…</p>
+    </section>
+
+    <section class="flow-card" id="error" role="alert" hidden>
+      <span class="flow-mark flow-mark--error" aria-hidden="true">!</span>
+      <p class="flow-eyebrow">BriefDrop</p>
+      <h1>We hit a snag</h1>
+      <p class="flow-copy" id="error-message">We couldn’t create your brief. Please try again.</p>
+      <div class="flow-actions">
+        <button class="cta flow-primary" id="retry" type="button"><span class="cta__label">Try again</span></button>
+        <a class="flow-secondary" href="build.html">Back to build</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

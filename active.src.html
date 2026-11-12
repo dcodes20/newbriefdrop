@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Active</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="active.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="active.js" defer></script>
+</head>
+<body class="act">
+  <header class="n-top" id="top">
+    <div class="n-top__in act-top">
+      <a class="n-ico" id="back" href="home.html" aria-label="Back">{{i:chevron-left}}</a>
+      <span></span>
+      <div class="n-more">
+        <button class="n-ico" id="more" type="button" aria-label="More options" aria-haspopup="menu" aria-expanded="false">{{i:ellipsis}}</button>
+        <div class="n-menu" id="menu" role="menu" hidden>
+          <button type="button" role="menuitem" data-act="brief">Open full brief</button>
+          <button type="button" role="menuitem" data-act="restart">Restart timer</button>
+          <button type="button" role="menuitem" data-act="copy">Copy link</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="act-main">
+    <section class="act-clock" id="clock" aria-label="Countdown">
+      <p class="act-time" id="time" role="timer" aria-live="off">--:--:--</p>
+      <p class="act-cap" id="cap">Time remaining</p>
+      <div class="act-track" aria-hidden="true"><i id="track"></i></div>
+    </section>
+
+    <div class="act-body">
+      <section class="act-card" id="card">
+        <h1 class="act-title" id="title"></h1>
+        <p class="act-meta" id="meta"></p>
+        <a class="act-view" id="view" href="project.html">View full brief</a>
+      </section>
+
+      <section class="act-sec">
+        <h2 class="act-h">Deliverables</h2>
+        <div class="act-del" id="del"></div>
+        <p class="act-count" id="cnt" aria-live="polite"></p>
+      </section>
+
+      <section class="act-sec act-notes">
+        <label class="act-l" for="notes">Quick notes <span id="saved" class="act-saved" aria-live="polite"></span></label>
+        <textarea id="notes" class="act-ta" rows="3" placeholder="Jot anything you’ll need for the Ship Kit…"></textarea>
+      </section>
+    </div>
+  </main>
+
+  <div class="act-bar" id="bar">
+    <div class="act-bar__in">
+      <button class="act-pause" id="pause" type="button">Pause</button>
+      <button class="cta act-ship" id="ship" type="button"><span class="cta__label">Ship it</span></button>
+    </div>
+  </div>
+
+  <nav class="tabs" aria-label="Main">
+    <a class="tab" href="home.html">{{i:house}}<span class="sr">Home</span></a>
+    <a class="tab" href="briefs.html" aria-label="Briefs">{{i:briefcase-business}}</a>
+    <a class="tab is-on" href="active.html" aria-current="page">{{i:layers}}<span>Active</span></a>
+    <button class="tab" type="button" data-soon="Profile" aria-label="Profile">{{i:circle-user-round}}</button>
+  </nav>
+
+  <dialog class="sheet" id="sdlg" aria-labelledby="sd-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="sd-t">Ship it now?</h2>
+      <p class="sheet__sub" id="sd-s"></p>
+      <div class="sheet__btns">
+        <button class="act-pause act-half" type="button" data-close>Keep working</button>
+        <button class="cta act-half" type="button" id="sd-go"><span class="cta__label">Ship anyway</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

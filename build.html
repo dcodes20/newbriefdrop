@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="briefdrop-api" content="/api/briefs">
+  <title>BriefDrop – Build your brief</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="build.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="build.js" defer></script>
+</head>
+<body class="bld">
+  <header class="n-top" id="top">
+    <div class="n-top__in bld-top">
+      <a class="n-ico" id="back" href="home.html" aria-label="Back"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6" /></svg></a>
+      <h1 class="n-title">Build your brief</h1>
+      <button class="bld-reset" id="reset" type="button">Reset</button>
+    </div>
+    <div class="bld-prog" aria-hidden="true"><i id="prog"></i></div>
+  </header>
+
+  <main class="bld-main">
+    <form id="form" novalidate autocomplete="off">
+      <div class="bld-f" id="f-skill">
+        <label class="bld-l" for="skill">Skill</label>
+        <button type="button" class="bld-sel" id="skill" aria-haspopup="dialog" data-pick="skill"><span class="bld-sel__v"></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></button>
+      </div>
+
+      <fieldset class="bld-f bld-grid" id="f-level">
+        <legend class="bld-l">Level</legend>
+        <div class="bld-opts" role="radiogroup" aria-label="Level" id="level"></div>
+      </fieldset>
+
+      <fieldset class="bld-f bld-grid" id="f-time">
+        <legend class="bld-l">Time available</legend>
+        <div class="bld-opts" role="radiogroup" aria-label="Time available" id="time"></div>
+      </fieldset>
+
+      <div class="bld-f" id="f-industry">
+        <label class="bld-l" for="industry">Industry</label>
+        <button type="button" class="bld-sel" id="industry" aria-haspopup="dialog" data-pick="industry"><span class="bld-sel__v"></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></button>
+      </div>
+
+      <div class="bld-f" id="f-goal">
+        <label class="bld-l" for="goal">Goal</label>
+        <input class="bld-in" id="goal" type="text" maxlength="120" placeholder="What should the user achieve?" enterkeyhint="done">
+      </div>
+
+      <div class="bld-f" id="f-platform">
+        <span class="bld-l" id="pl-l">Platform (optional)</span>
+        <div class="bld-chips" id="platform" role="radiogroup" aria-labelledby="pl-l"></div>
+      </div>
+    </form>
+  </main>
+
+  <footer class="bld-bar" id="bar">
+    <div class="bld-bar__in">
+      <button class="cta bld-go" id="go" type="button"><span class="cta__label">Generate brief</span></button>
+      <button class="bld-link" id="surprise" type="button">Surprise me instead</button>
+      <button class="bld-clear" id="clear" type="button">Clear all</button>
+    </div>
+  </footer>
+
+  <dialog class="sheet bld-sheet" id="pick" aria-labelledby="pick-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="pick-t">Skill</h2>
+      <div class="bld-list" id="pick-list" role="listbox"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

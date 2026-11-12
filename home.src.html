@@ -54,7 +54,7 @@
     <div class="quick">
       <button class="tile" id="surprise" type="button" style="--r:-4deg"><span class="tile__ic" style="--ir:0deg">{{i:dices}}</span><span>Surprise me</span></button>
       <button class="tile" id="saved" type="button" style="--r:0deg"><span class="tile__ic" style="--ir:8deg">{{i:bookmark}}<b class="tile__n" id="saved-n" hidden>0</b></span><span>Saved briefs</span></button>
-      <button class="tile" id="build" type="button" style="--r:4deg"><span class="tile__ic" style="--ir:-8deg">{{i:zap}}</span><span>Build my own</span></button>
+      <a class="tile" id="build" href="build.html" style="--r:4deg"><span class="tile__ic" style="--ir:-8deg">{{i:zap}}</span><span>Build my own</span></a>
     </div>
 
     <button class="cta cta--wide" id="show" type="button"><span class="cta__label">Show me a brief</span></button>
@@ -63,7 +63,7 @@
   <nav class="tabs" aria-label="Main">
     <a class="tab is-on" href="home.html" aria-current="page">{{i:house}}<span>Home</span></a>
     <a class="tab" href="briefs.html" aria-label="Briefs">{{i:briefcase-business}}</a>
-    <button class="tab" type="button" data-soon="Library" aria-label="Library">{{i:layers}}</button>
+    <a class="tab" href="active.html" aria-label="Active">{{i:layers}}</a>
     <button class="tab" type="button" data-soon="Profile" aria-label="Profile">{{i:circle-user-round}}</button>
   </nav>
 
@@ -92,22 +92,6 @@
       <ul class="saved" id="s-list"></ul>
       <p class="empty" id="s-empty">Nothing saved yet. Tap the bookmark on any brief to keep it here.</p>
     </div>
-  </dialog>
-
-  <!-- build my own -->
-  <dialog class="sheet" id="builddlg" aria-labelledby="b-title">
-    <button class="sheet__x" type="button" aria-label="Close" data-close>{{i:x}}</button>
-    <form class="sheet__body" id="b-form">
-      <h2 class="sheet__title" id="b-title">Build my own</h2>
-      <p class="sheet__sub">Pick a craft and a level. Claude does the rest.</p>
-      <p class="sheet__h">Craft</p>
-      <div class="opts" id="b-craft" role="radiogroup" aria-label="Craft"></div>
-      <p class="sheet__h">Level</p>
-      <div class="seg" id="b-level" role="radiogroup" aria-label="Level"></div>
-      <label class="sheet__h" for="b-topic">Topic <span class="opt">(optional)</span></label>
-      <input class="txt" id="b-topic" type="text" maxlength="28" placeholder="e.g. fintech, music, travel" autocomplete="off">
-      <div class="sheet__btns"><button class="pbtn pbtn--primary" type="submit" id="b-go">{{i:sparkles}}<span>Generate</span></button></div>
-    </form>
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

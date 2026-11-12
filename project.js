@@ -115,29 +115,14 @@
   }
   $('#start').addEventListener('click', () => {
     const was = started.has(B.id); started.add(B.id); store.set('briefdrop.started', [...started]); sync();
-    if (!was) { confetti($('#start').getBoundingClientRect()); say('Brief started. Tick off deliverables as you go.'); }
+    if (!was) { confetti($('#start').getBoundingClientRect()); say('Brief started. The clock is running.'); }
     else say('Welcome back. Pick up where you left off.');
-    const d = $('.p-del'); if (d) d.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    const to = 'active.html?id=' + encodeURIComponent(B.id) + (params.has('demo') ? '&demo' : '');
+    setTimeout(() => { location.href = to; }, reduce ? 0 : (was ? 350 : 800));
   });
 
-  /* ── remix / reroll (Claude via backend, local fallback) ── */
+  /* ── remix ── */
   let busy = false;
-  async function regenerate(kind) {
-    if (busy) return; busy = true;
-    const btn = $(kind === 'remix' ? '#remix' : '#reroll'); btn.classList.add('is-busy'); $$('.p-bar .p-btn').forEach((b) => (b.disabled = true));
-    doc.style.opacity = '.45'; doc.style.transition = 'opacity .2s';
-    try {
-      const opts = kind === 'remix' ? { count: 1, discipline: B.discipline, level: B.level, topic: B.domain, avoid: [B.title] } : { count: 1, level: B.level, avoid: [B.title] };
-      const t0 = performance.now();
-      const { briefs, source } = await window.BriefAI.generate(opts);
-      const wait = 600 - (performance.now() - t0); if (wait > 0 && !reduce) await new Promise((r) => setTimeout(r, wait));
-      const nb = briefs && briefs[0]; if (!nb) throw new Error('empty');
-      B = nb; render(true);
-      scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-      say(kind === 'remix' ? 'Remixed: same craft, a new twist.' : 'Rerolled: a completely different brief.');
-    } catch (_) { say('Couldn’t make a new brief just now. Try again.'); }
-    finally { doc.style.opacity = ''; btn.classList.remove('is-busy'); $$('.p-bar .p-btn').forEach((b) => (b.disabled = false)); busy = false; }
-  }
   /* remix sheet: pick twists, then apply */
   const rx = $('#rx'), opts = $('#rx-opts');
   const INDUSTRIES = ['Fintech', 'Health', 'Travel', 'Food', 'Education', 'Climate', 'Music', 'Social', 'Gaming', 'Mobility', 'Commerce', 'Productivity', 'Civic'];
@@ -175,21 +160,45 @@
   }
   $('#rx-apply').addEventListener('click', applyRemix);
   $('#remix').addEventListener('click', openRemix);
-  $('#reroll').addEventListener('click', () => regenerate('reroll'));
+  const rr = $('#rr');
+  function openReroll() {
+    const n = prog().length, st = started.has(B.id), note = $('#rr-note');
+    note.hidden = !(n || st); if (n || st) note.textContent = n ? `You’ve ticked off ${n} deliverable${n === 1 ? '' : 's'} on this one. That progress will be cleared.` : 'You’ve started this brief. Rerolling replaces it.';
+    if (!rr.open) rr.showModal(); $('#rr-keep').focus();
+  }
+  rr.addEventListener('click', (e) => { if (e.target === rr) rr.close(); });
+  $('#rr-keep').addEventListener('click', () => { rr.close(); say('Kept. Good choice.'); });
+  $('#rr-go').addEventListener('click', () => { rr.close(); location.href = 'build.html'; });
+  $('#reroll').addEventListener('click', openReroll);
 
   /* ── share / menu ── */
   async function copyLink() { try { await navigator.clipboard.writeText(location.href); say('Link copied.'); } catch (_) { say('Copy the link from the address bar.'); } }
-  $('#share').addEventListener('click', async () => {
-    if (navigator.share) { try { await navigator.share({ title: B.title, text: B.summary || B.title, url: location.href }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
-    copyLink();
+  const pop = $('#share-pop'), scrim = $('#scrim');
+  $$('.p-sh__i', pop).forEach((el, i) => el.style.setProperty('--k', i));
+  const shareOpen = () => !pop.hidden;
+  function openShare() { closeMenu(); pop.classList.remove('is-out'); pop.hidden = false; scrim.hidden = false; $('#share').setAttribute('aria-expanded', 'true'); $('.p-sh__i', pop).focus({ preventScroll: true }); }
+  function closeShare(focus) { if (pop.hidden) return; const done = () => { pop.hidden = true; scrim.hidden = true; pop.classList.remove('is-out'); }; $('#share').setAttribute('aria-expanded', 'false'); if (reduce) done(); else { pop.classList.add('is-out'); scrim.hidden = true; setTimeout(done, 180); } if (focus) $('#share').focus(); }
+  $('#share').addEventListener('click', (e) => { e.stopPropagation(); shareOpen() ? closeShare() : openShare(); });
+  scrim.addEventListener('click', () => closeShare());
+  const tell = () => ({ url: location.href, title: B.title, text: `${B.title} · a BriefDrop challenge` });
+  pop.addEventListener('click', async (e) => {
+    const it = e.target.closest('.p-sh__i'); if (!it) return; const k = it.dataset.s, t = tell(), u = encodeURIComponent(t.url), tx = encodeURIComponent(t.text);
+    const open = (url) => window.open(url, '_blank', 'noopener');
+    if (k === 'copy') { await copyLink(); it.classList.add('is-done'); $('span:last-child', it).textContent = 'Copied'; setTimeout(() => { it.classList.remove('is-done'); $('span:last-child', it).textContent = 'Copy link'; closeShare(); }, 900); return; }
+    if (k === 'linkedin') open(`https://www.linkedin.com/sharing/share-offsite/?url=${u}`);
+    else if (k === 'x') open(`https://twitter.com/intent/tweet?text=${tx}&url=${u}`);
+    else if (k === 'behance') { try { await navigator.clipboard.writeText(t.url); } catch (_) {} open('https://www.behance.net/'); say('Link copied. Paste it into your Behance project.'); }
+    else if (k === 'dribbble') { try { await navigator.clipboard.writeText(t.url); } catch (_) {} open('https://dribbble.com/shots/new'); say('Link copied. Paste it into your Dribbble shot.'); }
+    else if (k === 'more') { if (navigator.share) { try { await navigator.share(t); } catch (_) {} } else say('No other share options on this device.'); }
+    if (k !== 'more') closeShare();
   });
   const menu = $('#menu'), more = $('#more');
   const closeMenu = () => { menu.hidden = true; more.setAttribute('aria-expanded', 'false'); };
-  more.addEventListener('click', (e) => { e.stopPropagation(); const open = menu.hidden; menu.hidden = !open; more.setAttribute('aria-expanded', String(open)); if (open) $('button', menu).focus(); });
+  more.addEventListener('click', (e) => { e.stopPropagation(); closeShare(); const open = menu.hidden; menu.hidden = !open; more.setAttribute('aria-expanded', String(open)); if (open) $('button', menu).focus(); });
   menu.addEventListener('click', (e) => { const a = e.target.closest('[data-act]'); if (!a) return; closeMenu();
-    ({ copy: copyLink, remix: openRemix, reroll: () => regenerate('reroll'), reset: () => { store.set(progKey(), []); $$('.p-del input').forEach((x) => (x.checked = false)); count(); say('Progress reset.'); } })[a.dataset.act](); });
+    ({ copy: copyLink, share: openShare, remix: openRemix, reroll: openReroll, reset: () => { store.set(progKey(), []); $$('.p-del input').forEach((x) => (x.checked = false)); count(); say('Progress reset.'); } })[a.dataset.act](); });
   document.addEventListener('click', (e) => { if (!menu.hidden && !e.target.closest('.p-more')) closeMenu(); });
-  addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); more.focus(); } });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') { if (shareOpen()) { closeShare(true); return; } closeMenu(); more.focus(); } });
   $('#back').addEventListener('click', (e) => { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (_) {} });
 
   /* reading progress */

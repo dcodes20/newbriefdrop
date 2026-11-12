@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BriefDrop – Active</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="active.css">
+  <script src="icons.js" defer></script>
+  <script src="brief-ai.js" defer></script>
+  <script src="active.js" defer></script>
+</head>
+<body class="act">
+  <header class="n-top" id="top">
+    <div class="n-top__in act-top">
+      <a class="n-ico" id="back" href="home.html" aria-label="Back"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6" /></svg></a>
+      <span></span>
+      <div class="n-more">
+        <button class="n-ico" id="more" type="button" aria-label="More options" aria-haspopup="menu" aria-expanded="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="1" /> <circle cx="19" cy="12" r="1" /> <circle cx="5" cy="12" r="1" /></svg></button>
+        <div class="n-menu" id="menu" role="menu" hidden>
+          <button type="button" role="menuitem" data-act="brief">Open full brief</button>
+          <button type="button" role="menuitem" data-act="restart">Restart timer</button>
+          <button type="button" role="menuitem" data-act="copy">Copy link</button>
+          <button type="button" role="menuitem" data-act="abandon">Abandon and start a new brief</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="act-main">
+    <section class="act-clock" id="clock" aria-label="Countdown">
+      <p class="act-time" id="time" role="timer" aria-live="off">--:--:--</p>
+      <p class="act-cap" id="cap">Time remaining</p>
+      <div class="act-track" aria-hidden="true"><i id="track"></i></div>
+    </section>
+
+    <div class="act-body">
+      <section class="act-card" id="card">
+        <h1 class="act-title" id="title"></h1>
+        <p class="act-meta" id="meta"></p>
+        <a class="act-view" id="view" href="project.html">View full brief</a>
+      </section>
+
+      <section class="act-sec">
+        <h2 class="act-h">Deliverables</h2>
+        <div class="act-del" id="del"></div>
+        <p class="act-count" id="cnt" aria-live="polite"></p>
+      </section>
+
+      <section class="act-sec act-notes">
+        <label class="act-l" for="notes">Quick notes <span id="saved" class="act-saved" aria-live="polite"></span></label>
+        <textarea id="notes" class="act-ta" rows="3" placeholder="Jot anything you’ll need for the Ship Kit…"></textarea>
+      </section>
+    </div>
+  </main>
+
+  <div class="act-bar" id="bar">
+    <div class="act-bar__in">
+      <button class="act-pause" id="pause" type="button">Pause</button>
+      <button class="cta act-ship" id="ship" type="button"><span class="cta__label">Ship it</span></button>
+    </div>
+  </div>
+
+  <nav class="tabs" aria-label="Main">
+    <a class="tab" href="home.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg><span class="sr">Home</span></a>
+    <a class="tab" href="briefs.html" aria-label="Briefs"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 12h.01" /> <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /> <path d="M22 13a18.15 18.15 0 0 1-20 0" /> <rect width="20" height="14" x="2" y="6" rx="2" /></svg></a>
+    <a class="tab is-on" href="active.html" aria-current="page"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg><span>Active</span></a>
+    <button class="tab" type="button" data-soon="Profile" aria-label="Profile"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17.925 20.056a6 6 0 0 0-11.851.001" /> <circle cx="12" cy="11" r="4" /> <circle cx="12" cy="12" r="10" /></svg></button>
+  </nav>
+
+  <dialog class="sheet" id="sdlg" aria-labelledby="sd-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="sd-t">Ship it now?</h2>
+      <p class="sheet__sub" id="sd-s"></p>
+      <div class="sheet__btns">
+        <button class="act-pause act-half" type="button" data-close>Keep working</button>
+        <button class="cta act-half" type="button" id="sd-go"><span class="cta__label">Ship anyway</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
