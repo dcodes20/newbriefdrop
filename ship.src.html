@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
+  <title>BriefDrop – Ship it</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="build.css">
+  <link rel="stylesheet" href="ship.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="icons.js" defer></script>
+  <script src="notification-events.js" defer></script>
+  <script src="ship-brands.js" defer></script>
+  <script src="ship.js" defer></script>
+</head>
+<body class="bld shp">
+  <header class="n-top" id="top">
+    <div class="n-top__in bld-top">
+      <a class="n-ico" id="back" href="active.html" aria-label="Back">{{i:chevron-left}}</a>
+      <h1 class="n-title">Ship it</h1>
+      <a class="bld-reset" id="cancel" href="active.html">Cancel</a>
+    </div>
+    <div class="bld-prog" aria-hidden="true"><i id="prog"></i></div>
+  </header>
+
+  <main class="bld-main">
+    <form id="form" novalidate autocomplete="off">
+      <div class="shp-intro bld-f">
+        <h2 class="shp-h">Show the work</h2>
+        <p class="shp-p">Add links, images and a short reflection. We’ll turn it into a Ship Kit.</p>
+      </div>
+
+      <section class="bld-f shp-sec" id="f-links">
+        <div class="shp-hd"><span class="bld-l">Project links</span><p class="shp-sub shp-sub--lg">Figma, GitHub, live URL, prototype</p>
+          <button type="button" class="shp-add" id="addlink">+ Add another link</button></div>
+        <div class="shp-links" id="links"></div>
+        <p class="shp-err" id="links-err" role="alert" hidden></p>
+      </section>
+
+      <section class="bld-f shp-sec" id="f-files">
+        <div class="shp-hd"><span class="bld-l">Images &amp; files</span><p class="shp-sub">Screens, flows, final UI, process shots...</p></div>
+        <div class="shp-drop" id="drop" role="button" tabindex="0" aria-label="Upload images or files">
+          <div class="shp-drop__in">{{i:upload}}<p>Tap to upload or drag files here</p></div>
+          <input type="file" id="file" multiple accept="image/*,.pdf,.zip,.fig,.mp4,.mov" hidden>
+        </div>
+        <ul class="shp-files" id="files"></ul>
+        <p class="shp-err" id="files-err" role="alert" hidden></p>
+      </section>
+
+      <section class="bld-f shp-sec" id="f-reflect">
+        <div class="shp-hd"><label class="bld-l" for="reflect">Short reflection</label><p class="shp-sub">What did you learn? What would you do differently?</p></div>
+        <textarea class="shp-ta" id="reflect" rows="4" maxlength="800" placeholder="One honest paragraph is enough…"></textarea>
+        <p class="shp-meta"><span id="rcount">0</span> / 800</p>
+      </section>
+
+      <section class="bld-f shp-sec" id="f-label">
+        <label class="bld-l shp-lbl" for="label">Label</label>
+        <input class="shp-row" id="label" type="text" maxlength="60" value="Personal challenge via Briefdrop">
+        <p class="shp-note">This stays on by default so fictional briefs are never presented as paid client work. You can edit it.</p>
+      </section>
+    </form>
+  </main>
+
+  <footer class="bld-bar">
+    <div class="bld-bar__in">
+      <button class="cta bld-go" id="go" type="button"><span class="cta__label">Generate Ship Kit</span></button>
+    </div>
+  </footer>
+
+  <dialog class="sheet" id="kit" aria-labelledby="kit-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="kit-t">Your Ship Kit is ready</h2>
+      <p class="sheet__sub" id="kit-s"></p>
+      <ul class="shp-sum" id="kit-l"></ul>
+      <div class="sheet__btns">
+        <a class="cta shp-fin" href="kit.html"><span class="cta__label">See your Ship Kit</span></a>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

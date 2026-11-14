@@ -79,7 +79,20 @@
   }
   $('#del').addEventListener('change', (e) => {
     done = new Set($$('#del input').filter((x) => x.checked).map((x) => +x.dataset.i)); if (!demo) store.set(progKey, [...done]);
-    count(); if (e.target.checked && done.size === dels.length) confetti(e.target.nextElementSibling.getBoundingClientRect());
+    count();
+    if (!demoish && done.size !== dels.length) window.BriefDropNotifications.record({
+      id: `progress:${B.id}`, type: 'progress', title: 'Brief progress updated',
+      text: `${done.size} of ${dels.length} deliverables are complete for "${B.title}".`,
+      href: 'active.html?id=' + encodeURIComponent(B.id),
+    });
+    if (e.target.checked && done.size === dels.length) {
+      confetti(e.target.nextElementSibling.getBoundingClientRect());
+      if (!demoish) window.BriefDropNotifications.record({
+        id: `complete:${B.id}`, type: 'progress', title: 'Deliverables complete',
+        text: `You finished all deliverables for "${B.title}". Ready to ship?`,
+        href: 'ship.html?id=' + encodeURIComponent(B.id),
+      });
+    }
   });
 
   /* ── notes ───────────────────────────────────────────────────── */
@@ -93,8 +106,15 @@
   function doShip() {
     T.left = left(); T.shipped = true; if (!demo) save();
     const sh = store.get('briefdrop.shipped', []); if (!demo && Array.isArray(sh) && !sh.includes(B.id)) { sh.push(B.id); store.set('briefdrop.shipped', sh); }
+    if (!demoish) window.BriefDropNotifications.record({
+      id: `ship:${B.id}`, type: 'ship', title: 'Project shipped',
+      text: `"${B.title}" is shipped. Your Ship Kit is ready to build.`,
+      href: 'ship.html?id=' + encodeURIComponent(B.id),
+    });
     $('.cta__label', ship).textContent = 'Shipped'; ship.disabled = true; pauseBtn.disabled = true; pauseBtn.style.opacity = .4;
     confetti(ship.getBoundingClientRect()); say('Shipped. Nice work.'); count(); paint();
+    const shipParams = new URLSearchParams(location.search); shipParams.set('id', B.id);
+    location.href = 'ship.html?' + shipParams.toString();
   }
   ship.addEventListener('click', () => {
     if (T.shipped) return;

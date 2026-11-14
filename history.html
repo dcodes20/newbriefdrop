@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
+  <title>BriefDrop – History</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="history.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="icons.js" defer></script>
+  <script src="history.js" defer></script>
+</head>
+<body>
+  <header class="n-top" id="top">
+    <div class="n-top__in">
+      <a class="n-ico" id="back" href="kit.html" aria-label="Back to Ship Kit"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6" /></svg></a>
+      <h1 class="n-title">History</h1>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="n-main his-main">
+    <p class="his-intro">Your Ship Kits, newest first.</p>
+    <p class="his-count" id="count" aria-live="polite"></p>
+    <ul class="n-list his-list" id="list"></ul>
+
+    <section class="his-empty" id="empty" hidden aria-live="polite">
+      <div class="his-empty__mark" aria-hidden="true">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3" /><path d="M16 3h5v5" /><path d="m10 14 11-11" /></svg>
+      </div>
+      <h2 class="his-empty__title">No Ship Kits yet</h2>
+      <p class="his-empty__text">Generated Ship Kits will show up here.</p>
+      <a class="cta his-empty__link" href="briefs.html"><span class="cta__label">Find a brief</span></a>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

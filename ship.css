@@ -1,0 +1,68 @@
+/* BriefDrop – Ship it (Figma 251:5157). Builds on build.css form shell. */
+.shp #form { gap: 28px; }
+.shp-intro { gap: 16px; }
+.shp-h { font-family: var(--f-display); font-weight: 600; font-size: 24px; line-height: 24px; }
+.shp-p { font-size: 16px; line-height: 24px; color: var(--soft); }
+.shp-sec { gap: 16px; }
+.shp-hd { display: flex; flex-direction: column; gap: 4px; }
+.shp-sub { font-size: 14px; line-height: 24px; color: var(--soft); }
+.shp-sub--lg { font-size: 16px; }
+.shp-add { align-self: flex-start; font-size: 16px; line-height: 24px; color: var(--primary); margin-top: 4px; padding: 0; transition: color .2s, transform .3s var(--spring); }
+.shp-add:hover { color: #7aa5ff; transform: translateX(3px); }
+.shp-add:active { transform: scale(.96); }
+.shp-add[disabled] { color: var(--muted); cursor: default; transform: none; }
+
+.shp-links { display: flex; flex-direction: column; gap: 10px; }
+.shp-link { position: relative; display: flex; align-items: center; gap: 8px; padding: 14px 12px; border-radius: 14px; background: var(--card); border: 1.5px solid transparent; transition: border-color .2s, box-shadow .2s; }
+.shp-link:focus-within { border-color: var(--primary); }
+.shp-link.is-bad { border-color: var(--error); }
+.shp-link.is-new { animation: shp-in .45s var(--ease); }
+.shp-link.is-out { opacity: 0; transform: translateX(-20px); transition: opacity .25s, transform .25s; }
+@keyframes shp-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } }
+.shp-ico { flex: none; width: 24px; height: 24px; display: grid; place-items: center; color: var(--white); }
+.shp-ico svg { width: 24px; height: 24px; }
+.shp-ico .brand { transition: transform .4s var(--spring); }
+.shp-ico.pop .brand, .shp-ico.pop .ic { animation: bld-pop .45s var(--spring); }
+.shp-link input { flex: 1; min-width: 0; background: transparent; border: 0; padding: 0; font-size: 14px; line-height: 24px; color: var(--white); }
+.shp-link input::placeholder { color: var(--muted); font-size: 12px; }
+.shp-link input:focus { outline: none; }
+.shp-x { flex: none; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); transition: background-color .2s, color .2s; }
+.shp-x:hover { background: rgba(255,255,255,.08); color: var(--white); }
+.shp-x .ic { width: 16px; height: 16px; }
+.shp-err { font-size: 12px; line-height: 18px; color: var(--error); }
+.shp-err[hidden] { display: none; }
+
+.shp-drop { display: grid; place-items: center; height: 120px; padding: 14px 12px; border-radius: 16px; background: var(--card); border: 2px dashed var(--ink); color: var(--muted); font-size: 12px; cursor: pointer; transition: border-color .25s, background-color .25s, transform .3s var(--spring); }
+.shp-drop:hover { border-color: #555; }
+.shp-drop:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.shp-drop.is-over { border-color: var(--primary); background: rgba(24,90,219,.12); transform: scale(1.015); }
+.shp-drop__in { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.shp-drop .ic { width: 48px; height: 48px; stroke-width: 1.5; color: var(--soft); transition: transform .35s var(--spring); }
+.shp-drop:hover .ic, .shp-drop.is-over .ic { transform: translateY(-5px); }
+.shp-files { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
+.shp-files:empty { display: none; }
+.shp-f { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--card); display: grid; place-items: center; animation: shp-in .45s var(--ease); }
+.shp-f img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.shp-f .ic { width: 28px; height: 28px; color: var(--soft); }
+.shp-f span { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 6px 4px; font-size: 10px; line-height: 12px; background: linear-gradient(transparent, rgba(0,0,0,.85)); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.shp-f button { position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: rgba(0,0,0,.7); }
+.shp-f button .ic { width: 14px; height: 14px; color: #fff; }
+.shp-f:not(:has(img)) span { position: static; background: none; padding: 6px 8px 0; max-width: 100%; }
+.shp-f:not(:has(img)) { grid-template-rows: auto auto; align-content: center; justify-items: center; }
+
+.shp-ta { width: 100%; min-height: 110px; padding: 14px 12px; resize: none; border-radius: 4px; background: var(--card); border: 1.5px solid transparent; font: inherit; font-size: 14px; line-height: 24px; color: var(--white); transition: border-color .2s; }
+.shp-ta::placeholder { color: var(--muted); font-size: 12px; }
+.shp-ta:focus { outline: none; border-color: var(--primary); }
+.shp-meta { font-size: 11px; color: var(--muted); text-align: right; margin-top: -10px; }
+.shp-lbl { font-family: var(--f-display); font-weight: 600; }
+.shp-row { width: 100%; height: 52px; padding: 14px 12px; border-radius: 4px; background: var(--card); border: 1.5px solid transparent; font-size: 12px; color: var(--muted); transition: border-color .2s, color .2s; }
+.shp-row:focus { outline: none; border-color: var(--primary); color: var(--white); }
+.shp-note { font-size: 12px; line-height: 24px; color: var(--muted); margin-top: -4px; }
+
+.shp-sum { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 8px; }
+.shp-sum li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: 12px; background: #1b1b1b; font-size: 14px; }
+.shp-sum li b { color: var(--cream); font-weight: 700; text-align: right; overflow-wrap: anywhere; }
+.shp-fin { width: 100%; padding: 15px 20px 14px; border-radius: 14px; font-size: 16px; text-decoration: none; }
+.shp .bld-bar__in { max-width: 512px; }
+@media (min-width: 640px) { .shp-files { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .shp-link.is-new, .shp-f { animation: none; } }

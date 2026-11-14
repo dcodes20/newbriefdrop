@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
+  <title>BriefDrop – Settings</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="settings.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="icons.js" defer></script>
+  <script src="settings.js" defer></script>
+</head>
+<body class="set">
+  <header class="n-top" id="top">
+    <div class="n-top__in">
+      <a class="n-ico" id="back" href="you.html" aria-label="Back">{{i:chevron-left}}</a>
+      <h1 class="n-title">Settings</h1>
+      <button class="n-ico" id="about" type="button" aria-label="About BriefDrop">{{i:info}}</button>
+    </div>
+  </header>
+
+  <main class="s-main">
+    <div class="s-list">
+      <button class="s-row" type="button" data-open="account"><span>Account</span>{{i:chevron-right}}</button>
+      <button class="s-row" type="button" data-open="notifs" aria-haspopup="dialog" aria-controls="notifs"><span>Notifications</span>{{i:chevron-right}}</button>
+      <button class="s-row" type="button" data-open="regions"><span>Region Packs</span>{{i:chevron-right}}</button>
+      <div class="s-row s-row--sw"><span id="l-app">Appearance</span><button class="s-sw" type="button" role="switch" id="sw-app" aria-labelledby="l-app" aria-checked="true"><span class="s-sw__on">{{i:toggle-right}}</span><span class="s-sw__off">{{i:toggle-left}}</span></button></div>
+      <div class="s-row s-row--sw"><span id="l-data">Low-data mode</span><button class="s-sw" type="button" role="switch" id="sw-data" aria-labelledby="l-data" aria-checked="false"><span class="s-sw__on">{{i:toggle-right}}</span><span class="s-sw__off">{{i:toggle-left}}</span></button></div>
+      <button class="s-row" type="button" id="export"><span>Export all my data</span>{{i:chevron-right}}</button>
+    </div>
+
+    <div class="s-list s-gap">
+      <button class="s-row" type="button" data-open="logout"><span>Log Out</span>{{i:log-out}}</button>
+    </div>
+
+    <div class="s-list s-bottom">
+      <button class="s-row s-row--danger" type="button" data-open="delete"><span>Delete account</span>{{i:trash}}</button>
+    </div>
+  </main>
+
+  <dialog class="sheet" id="account" aria-labelledby="a-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="a-t">Account</h2>
+      <label class="s-l" for="a-name">Display name</label>
+      <input class="s-in" id="a-name" type="text" maxlength="24" autocomplete="off">
+      <label class="s-l" for="a-mail">Email</label>
+      <input class="s-in" id="a-mail" type="email" autocomplete="off" placeholder="you@example.com">
+      <a class="s-link" href="forgot.html">Change password</a>
+      <div class="sheet__btns"><button class="cta cta--card" type="button" id="a-save"><span class="cta__label">Save changes</span></button></div>
+    </div>
+  </dialog>
+
+  <dialog class="sheet" id="notifs" aria-labelledby="n-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="n-t">Notifications</h2>
+      <p class="sheet__sub">Choose what BriefDrop nudges you about.</p>
+      <div class="s-sub">
+        <div class="s-row s-row--sw"><span id="n1">Daily Drop</span><button class="s-sw" type="button" role="switch" aria-labelledby="n1" aria-checked="true" data-pref="drop"><span class="s-sw__on">{{i:toggle-right}}</span><span class="s-sw__off">{{i:toggle-left}}</span></button></div>
+        <div class="s-row s-row--sw"><span id="n2">Streak reminders</span><button class="s-sw" type="button" role="switch" aria-labelledby="n2" aria-checked="true" data-pref="streak"><span class="s-sw__on">{{i:toggle-right}}</span><span class="s-sw__off">{{i:toggle-left}}</span></button></div>
+        <div class="s-row s-row--sw"><span id="n3">Time’s-up alerts</span><button class="s-sw" type="button" role="switch" aria-labelledby="n3" aria-checked="false" data-pref="timer"><span class="s-sw__on">{{i:toggle-right}}</span><span class="s-sw__off">{{i:toggle-left}}</span></button></div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="sheet" id="regions" aria-labelledby="r-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="r-t">Region Packs</h2>
+      <p class="sheet__sub">Get briefs flavoured by places and audiences you care about.</p>
+      <div class="s-chips" id="r-list" role="group" aria-label="Region packs"></div>
+    </div>
+  </dialog>
+
+  <dialog class="sheet" id="logout" aria-labelledby="lo-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="lo-t">Log out?</h2>
+      <p class="sheet__sub">Your briefs, progress and Ship Kits stay on this device.</p>
+      <div class="sheet__btns"><button class="s-ghost" type="button" data-close>Stay</button><button class="cta cta--card s-half" type="button" id="lo-go"><span class="cta__label">Log out</span></button></div>
+    </div>
+  </dialog>
+
+  <dialog class="sheet" id="delete" aria-labelledby="d-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="d-t">Delete account</h2>
+      <p class="sheet__sub">This permanently erases your briefs, progress, notes and Ship Kits from this device. It can’t be undone.</p>
+      <label class="s-l" for="d-in">Type DELETE to confirm</label>
+      <input class="s-in" id="d-in" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false">
+      <div class="sheet__btns"><button class="s-ghost" type="button" data-close>Cancel</button><button class="s-del" type="button" id="d-go" disabled>Delete everything</button></div>
+    </div>
+  </dialog>
+
+  <dialog class="sheet" id="aboutd" aria-labelledby="ab-t">
+    <button class="sheet__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+    <div class="sheet__body">
+      <h2 class="sheet__title" id="ab-t">BriefDrop</h2>
+      <p class="sheet__sub">Practice briefs for creatives. A fresh one lands every 24 hours, generated with Claude.</p>
+      <ul class="s-facts"><li><span>Version</span><b>0.9 prototype</b></li><li><span>Storage</span><b>This device only</b></li><li><span>Briefs</span><b>New every 24h</b></li></ul>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

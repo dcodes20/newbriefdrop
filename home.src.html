@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
   <title>BriefDrop – Home</title>
   <meta name="description" content="Your next best brief, fresh every time.">
   <!-- Where fresh briefs come from. Point this at a backend that calls Claude (see server/server.js).
@@ -13,7 +14,9 @@
   <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="theme.css">
   <script src="icons.js" defer></script>
+  <script src="notification-events.js" defer></script>
   <script src="brief-ai.js" defer></script>
   <script src="home.js" defer></script>
 </head>
@@ -22,7 +25,7 @@
   <header class="bar" id="bar">
     <div class="bar__in">
       <div class="me">
-        <span class="avatar" aria-hidden="true">{{i:circle-user-round}}</span>
+        <a class="avatar" href="you.html" aria-label="You profile">{{i:circle-user-round}}</a>
         <p class="me__hi">Ready when you are.</p>
       </div>
       <div class="bar__r">
@@ -64,7 +67,7 @@
     <a class="tab is-on" href="home.html" aria-current="page">{{i:house}}<span>Home</span></a>
     <a class="tab" href="briefs.html" aria-label="Briefs">{{i:briefcase-business}}</a>
     <a class="tab" href="active.html" aria-label="Active">{{i:layers}}</a>
-    <button class="tab" type="button" data-soon="Profile" aria-label="Profile">{{i:circle-user-round}}</button>
+    <a class="tab" href="you.html" aria-label="You">{{i:circle-user-round}}</a>
   </nav>
 
   <!-- brief details -->

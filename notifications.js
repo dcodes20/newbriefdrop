@@ -27,8 +27,8 @@
   const list = $('#list'), empty = $('#empty'), tools = $('#tools'), top = $('#top');
   const S = { f: 'all' };
   const ago = (t) => { const m = Math.round((Date.now() - t) / 60000); if (m < 1) return 'Just now'; if (m < 60) return `${m} min ago`; const h = Math.round(m / 60); if (h < 24) return `${h} hour${h === 1 ? '' : 's'} ago`; const d = Math.round(h / 24); return d === 1 ? 'Yesterday' : `${d} days ago`; };
-  const ICON = { drop: ['', IC.zap], streak: ['n-ib--streak', IC.flame], save: ['n-ib--save', IC.bookmark] };
-  const vis = () => N.filter((n) => S.f === 'all' || (S.f === 'unread' ? !n.read : n.type === S.f));
+  const ICON = { drop: ['', IC.zap], streak: ['n-ib--streak', IC.flame], save: ['n-ib--save', IC.bookmark], progress: ['', IC.check], ship: ['', IC.trophy], kit: ['', IC.info] };
+  const vis = () => N.filter((n) => S.f === 'all' || (S.f === 'unread' ? !n.read : S.f === 'activity' ? ['save', 'progress', 'ship', 'kit'].includes(n.type) : n.type === S.f));
 
   function render(anim) {
     const v = vis(); list.replaceChildren();
@@ -46,7 +46,7 @@
     if (nothing) {
       const filtered = N.length > 0;
       $('#et').textContent = filtered ? 'Nothing here' : 'You’re all caught up';
-      $('#es').textContent = filtered ? 'No notifications match this filter.' : 'New Daily Drops and streak reminders will appear here.';
+      $('#es').textContent = filtered ? 'No notifications match this filter.' : 'Updates about saved briefs, progress and completed Ship Kits will appear here.';
       $('#ep').hidden = filtered;
     }
     const wasHidden = empty.hidden; empty.hidden = !nothing; if (nothing && wasHidden) { empty.style.animation = 'none'; void empty.offsetWidth; empty.style.animation = ''; }
@@ -83,8 +83,13 @@
   document.addEventListener('click', (e) => { if (!menu.hidden && !e.target.closest('.n-more')) close(); });
   addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); } });
 
-  $('#settings').addEventListener('click', () => say('Settings isn’t built in this prototype yet.'));
   $('#back').addEventListener('click', (e) => { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (_) {} });
+  addEventListener('storage', (e) => {
+    if (e.key !== 'briefdrop.notifs') return;
+    N = store.get('briefdrop.notifs', []);
+    if (!Array.isArray(N)) N = [];
+    render(false);
+  });
   addEventListener('scroll', () => top.classList.toggle('is-stuck', scrollY > 4), { passive: true });
   setInterval(() => { if (N.length && !document.hidden) { $$('.n-item').forEach((li) => { const n = N.find((x) => x.id === li.dataset.id); if (n) $('.n-time', li).textContent = ago(n.at); }); } }, 60000);
 

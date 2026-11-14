@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
   <title>BriefDrop – Briefs</title>
   <meta name="description" content="A fresh set of briefs every 24 hours.">
   <!-- Same brief source as home.html: your Claude-backed endpoint, with a local fallback. A new pool is made every 24 hours. -->
@@ -13,7 +14,9 @@
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="briefs.css">
+  <link rel="stylesheet" href="theme.css">
   <script src="icons.js" defer></script>
+  <script src="notification-events.js" defer></script>
   <script src="brief-ai.js" defer></script>
   <script src="briefs.js" defer></script>
 </head>
@@ -58,7 +61,7 @@
     <a class="tab" href="home.html" aria-label="Home">{{i:house}}</a>
     <a class="tab is-on" href="briefs.html" aria-current="page">{{i:briefcase-business}}<span>Briefs</span></a>
     <a class="tab" href="active.html" aria-label="Active">{{i:layers}}</a>
-    <button class="tab" type="button" data-soon="Profile" aria-label="Profile">{{i:circle-user-round}}</button>
+    <a class="tab" href="you.html" aria-label="You">{{i:circle-user-round}}</a>
   </nav>
 
   <!-- brief details -->

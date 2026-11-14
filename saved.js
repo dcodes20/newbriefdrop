@@ -147,7 +147,16 @@
   const prog = () => { const bx = $$('#d-list input'), n = bx.filter((x) => x.checked).length; $('#d-prog').textContent = bx.length ? (n === bx.length ? 'All done. Nice work.' : `${n} of ${bx.length} done`) : ''; };
   $('#d-list').addEventListener('change', prog);
   $('#d-save').addEventListener('click', () => { if (!current) return; const b = current; dlg.close(); removeIds(new Set([b.id]), 'Removed from saved.'); });
-  $('#d-begin').addEventListener('click', () => { if (!current) return; started.add(current.id); store.set('briefdrop.started', [...started]); dlg.close(); say('Brief started. Good luck.'); render(false); });
+  $('#d-begin').addEventListener('click', () => {
+    if (!current) return;
+    const was = started.has(current.id);
+    started.add(current.id); store.set('briefdrop.started', [...started]);
+    if (!was) window.BriefDropNotifications.record({
+      id: `start:${current.id}`, type: 'progress', title: 'Brief started',
+      text: `You started "${current.title}".`, href: 'active.html?id=' + encodeURIComponent(current.id),
+    });
+    dlg.close(); say('Brief started. Good luck.'); render(false);
+  });
   document.addEventListener('click', (e) => { const cl = e.target.closest('[data-close]'); if (cl) { cl.closest('dialog').close(); return; } if (e.target instanceof HTMLDialogElement) e.target.close(); });
 
   $$('[data-soon]').forEach((t) => t.addEventListener('click', () => { t.classList.remove('bump'); void t.offsetWidth; t.classList.add('bump'); say(`${t.dataset.soon} isn’t built in this prototype yet.`); }));

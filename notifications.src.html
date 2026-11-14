@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
   <title>BriefDrop – Notifications</title>
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -11,6 +12,7 @@
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="notifications.css">
   <link rel="stylesheet" href="notifications-list.css">
+  <link rel="stylesheet" href="theme.css">
   <script src="icons.js" defer></script>
   <script src="notifications-list.js" defer></script>
 </head>
@@ -26,6 +28,7 @@
           <button type="button" role="menuitemradio" aria-checked="false" data-f="unread">Unread</button>
           <button type="button" role="menuitemradio" aria-checked="false" data-f="drop">Daily Drops</button>
           <button type="button" role="menuitemradio" aria-checked="false" data-f="streak">Streaks</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-f="activity">Brief activity</button>
         </div>
       </div>
     </div>
@@ -43,8 +46,8 @@
       <div class="n-art" id="art"><div class="n-art__f"><!-- Placeholder artwork: export Figma node 251:3549 as assets/no-notifications.png and change this src. --><img src="assets/no-notifications.svg" width="402" height="402" alt="Someone relaxing on the floor beneath a muted bell."></div></div>
       <div class="n-copy">
         <h2 class="n-et" id="et">You’re all caught up</h2>
-        <p class="n-es" id="es">New Daily Drops and streak reminders will appear here.</p>
-        <p class="n-ep" id="ep">You can manage notification preferences in <button type="button" class="n-link" id="settings">Settings</button></p>
+        <p class="n-es" id="es">Updates about saved briefs, progress and completed Ship Kits will appear here.</p>
+        <p class="n-ep" id="ep">You can manage notification preferences in <a class="n-link" id="settings" href="settings.html?open=notifs&amp;from=notifications.html">Settings</a></p>
       </div>
     </section>
   </main>

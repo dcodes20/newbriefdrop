@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
+  <title>BriefDrop – Your Ship Kit</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="notifications.css">
+  <link rel="stylesheet" href="kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="icons.js" defer></script>
+  <script src="notification-events.js" defer></script>
+  <script src="ship-brands.js" defer></script>
+  <script src="kit.js" defer></script>
+</head>
+<body class="kit">
+  <header class="n-top" id="top">
+    <div class="n-top__in kit-top">
+      <a class="n-ico" id="back" href="ship.html" aria-label="Back">{{i:chevron-left}}</a>
+      <h1 class="n-title">Your Ship Kit</h1>
+      <button class="kit-edit" id="edit-top" type="button">Edit</button>
+    </div>
+  </header>
+
+  <main class="kit-main">
+    <div class="kit-badge" id="badge" aria-hidden="true">
+      <i class="kit-ring"></i>
+      <svg viewBox="0 0 64 64" width="64" height="64" fill="none"><path d="M16 33l11 11 22-24" stroke="#1f9d62" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+    </div>
+    <div class="kit-hero">
+      <h2 class="kit-h" id="h">It’s ready</h2>
+      <p class="kit-p">Everything you need to publish this project somewhere else.</p>
+    </div>
+
+    <div class="kit-body">
+      <article class="kit-card" id="card">
+        <div class="kit-card__hd"><span>Case-study draft</span><button type="button" id="edit" class="kit-link">Edit</button></div>
+        <section><h3 class="kit-s">Problem</h3><p class="kit-t" data-k="problem"></p></section>
+        <section><h3 class="kit-s">Challenge</h3><p class="kit-t" data-k="challenge"></p></section>
+        <section><h3 class="kit-s">Constraints</h3><ul class="kit-ul" id="cons"></ul></section>
+        <section id="refl" hidden><h3 class="kit-s">Reflection</h3><p class="kit-t" data-k="reflection"></p></section>
+        <section id="lnk" hidden><h3 class="kit-s">Links</h3><ul class="kit-links" id="links"></ul></section>
+      </article>
+
+      <section class="kit-cover-wrap">
+        <p class="kit-l">Cover card</p>
+        <div class="kit-cover" id="cover" role="img" aria-label="Generated cover card">
+          <!-- Placeholder for Figma "Frame 313" cover art; swap for an exported image if you have one. -->
+          <div class="kit-cover__bg" id="cbg"></div>
+          <p class="kit-cover__t" id="ct"></p>
+          <span class="kit-cover__tag" id="ctag"></span>
+        </div>
+        <p class="kit-meta" id="cmeta"></p>
+      </section>
+
+      <p class="kit-l" id="lbl"></p>
+    </div>
+  </main>
+
+  <footer class="kit-bar">
+    <div class="kit-bar__in">
+      <button class="cta kit-exp" id="export" type="button"><span class="cta__label">Export</span>{{i:arrow-right-from-line}}</button>
+      <a class="kit-sec" id="another" href="briefs.html">Ship another brief</a>
+      <button class="kit-mut" id="hist" type="button">View in history</button>
+      <a class="kit-done" id="done" href="home.html">Done</a>
+    </div>
+  </footer>
+
+  <dialog class="sheet kit-ex" id="xdlg" aria-label="Export your Ship Kit">
+    <div class="kit-ex__in">
+      <button class="kit-ex__x" type="button" data-close aria-label="Close">{{i:x}}</button>
+      <div class="kit-ex__list" id="x-main">
+        <button type="button" data-x="paste"><span class="kit-ex__i" data-b="behance"></span><span class="kit-ex__t">Paste into Behance, Notion, Framer, Webflow, Medium</span>{{i:arrow-down-to-line}}</button>
+        <button type="button" data-x="readme"><span class="kit-ex__i" data-b="github"></span><span class="kit-ex__t">Perfect for GitHub README / blogs</span>{{i:arrow-down-to-line}}</button>
+        <button type="button" data-x="print">{{i:file-text}}<span class="kit-ex__t">PDF case study</span>{{i:arrow-down-to-line}}</button>
+        <button type="button" data-x="assets">{{i:image}}<span class="kit-ex__t">Cover card + all assets as zip or individual downloads</span>{{i:arrow-down-to-line}}</button>
+      </div>
+      <div class="kit-ex__list" id="x-more" hidden>
+        <button type="button" data-x="zip">{{i:image}}<span class="kit-ex__t">Everything as one .zip</span>{{i:arrow-down-to-line}}</button>
+        <button type="button" data-x="cover">{{i:image}}<span class="kit-ex__t">Cover card only (.png)</span>{{i:arrow-down-to-line}}</button>
+        <button type="button" data-x="md">{{i:file-text}}<span class="kit-ex__t">Case study only (.md)</span>{{i:arrow-down-to-line}}</button>
+        <button type="button" class="kit-ex__back" data-x="back">{{i:chevron-left}}<span class="kit-ex__t">Back</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="sheet kit-ok" id="okdlg" aria-labelledby="ok-t">
+    <div class="kit-ok__in">
+      <div class="kit-ok__pop" aria-hidden="true">{{i:check}}</div>
+      <h2 class="kit-ok__t" id="ok-t">It’s out of the app.</h2>
+      <p class="kit-ok__s" id="ok-s">Now put it where your portfolio lives.</p>
+      <div class="kit-ok__a">
+        <a class="cta kit-ok__done" id="ok-done" href="home.html"><span class="cta__label">Done</span></a>
+        <a class="kit-ok__another" id="ok-another" href="briefs.html">Ship another</a>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

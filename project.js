@@ -99,7 +99,13 @@
   }
   function toggleSave() {
     const i = saved.findIndex((s) => s.id === B.id || s.title === B.title);
-    if (i >= 0) { saved.splice(i, 1); say('Removed from saved.'); } else { saved.unshift(B); say('Saved for later.'); }
+    if (i >= 0) { saved.splice(i, 1); say('Removed from saved.'); } else {
+      saved.unshift(B); say('Saved for later.');
+      window.BriefDropNotifications.record({
+        id: `save:${B.id}`, type: 'save', title: 'Brief saved',
+        text: `"${B.title}" was added to your Saved briefs.`, href: 'saved.html',
+      });
+    }
     store.set('briefdrop.saved', saved); sync();
     const bm = $('#bm'); bm.classList.remove('pop'); void bm.offsetWidth; bm.classList.add('pop');
   }
@@ -115,6 +121,10 @@
   }
   $('#start').addEventListener('click', () => {
     const was = started.has(B.id); started.add(B.id); store.set('briefdrop.started', [...started]); sync();
+    if (!was) window.BriefDropNotifications.record({
+      id: `start:${B.id}`, type: 'progress', title: 'Brief started',
+      text: `You started "${B.title}".`, href: 'active.html?id=' + encodeURIComponent(B.id),
+    });
     if (!was) { confetti($('#start').getBoundingClientRect()); say('Brief started. The clock is running.'); }
     else say('Welcome back. Pick up where you left off.');
     const to = 'active.html?id=' + encodeURIComponent(B.id) + (params.has('demo') ? '&demo' : '');

@@ -230,13 +230,24 @@
   $('#d-save').addEventListener('click', () => { if (current) toggleSave(current); syncSave(); });
   $('#d-begin').addEventListener('click', () => {
     if (!current) return;
+    const was = started.has(current.id);
     started.add(current.id); store.set('briefdrop.started', [...started]);
+    if (!was) window.BriefDropNotifications.record({
+      id: `start:${current.id}`, type: 'progress', title: 'Brief started',
+      text: `You started "${current.title}".`, href: 'active.html?id=' + encodeURIComponent(current.id),
+    });
     dlgD.close(); say('Brief started. Good luck.'); apply({ animate: false });
   });
 
   function toggleSave(b) {
     const i = saved.findIndex((s) => s.id === b.id || s.title === b.title);
-    if (i >= 0) { saved.splice(i, 1); say('Removed from saved.'); } else { saved.unshift(b); say('Saved.'); }
+    if (i >= 0) { saved.splice(i, 1); say('Removed from saved.'); } else {
+      saved.unshift(b); say('Saved.');
+      window.BriefDropNotifications.record({
+        id: `save:${b.id}`, type: 'save', title: 'Brief saved',
+        text: `"${b.title}" was added to your Saved briefs.`, href: 'saved.html',
+      });
+    }
     store.set('briefdrop.saved', saved);
     const savedFilter = S.filters.has('saved');
     if (savedFilter) { apply({ animate: false }); return; }

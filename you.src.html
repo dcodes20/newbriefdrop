@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
+  <title>BriefDrop – You</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="you.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="icons.js" defer></script>
+  <script src="you.js" defer></script>
+</head>
+<body class="you">
+  <header class="y-top" id="top">
+    <div class="y-top__in">
+      <h1 class="y-title">You</h1>
+      <a class="y-ico" id="settings" href="settings.html" aria-label="Settings">{{i:settings}}</a>
+    </div>
+  </header>
+
+  <main class="y-main">
+    <section class="y-head" aria-label="Profile">
+      <button class="y-av" id="av" type="button" aria-label="Change profile photo">
+        <span class="y-av__i" id="av-i" aria-hidden="true"></span>
+        <img id="av-img" alt="" hidden>
+        <span class="y-av__cam" aria-hidden="true">{{i:camera}}</span>
+      </button>
+      <input type="file" id="av-file" accept="image/*" hidden>
+      <h2 class="y-name" id="name" contenteditable="plaintext-only" spellcheck="false" role="textbox" aria-label="Your name" enterkeyhint="done">Dcodes</h2>
+      <p class="y-rank" id="rank"></p>
+      <button class="y-streak" id="streak" type="button">{{i:flame}}<span id="st-t">4-day streak</span></button>
+      <div class="y-prog">
+        <div class="y-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="pbar"><i class="y-glow" id="pglow"></i><i class="y-fill" id="pfill"></i></div>
+        <p class="y-next" id="next"></p>
+      </div>
+    </section>
+
+    <section class="y-stats" id="stats" aria-label="Stats">
+      <div class="y-stat"><b data-n="shipped">0</b><span>Builds shipped</span></div>
+      <div class="y-stat"><b data-n="months">0</b><span>Total months</span></div>
+      <div class="y-stat"><b data-n="streak">0</b><span>Current streak</span></div>
+    </section>
+
+    <section class="y-sec" id="skills-sec">
+      <h2 class="y-h">What you’re practising</h2>
+      <p class="y-sub">Skills you keep shipping vs the ones you avoid</p>
+      <div class="y-skills" id="skills"></div>
+    </section>
+
+    <section class="y-sec" id="builds-sec">
+      <div class="y-row"><h2 class="y-h">Recent builds</h2><button class="y-all" id="seeall" type="button">See all</button></div>
+      <div class="y-builds" id="builds"></div>
+    </section>
+
+    <section class="y-sec y-badges">
+      <h2 class="y-h">Badges</h2>
+      <div class="y-bl" id="badges"></div>
+    </section>
+  </main>
+
+  <nav class="tabs" aria-label="Main">
+    <a class="tab" href="home.html" aria-label="Home">{{i:house}}</a>
+    <a class="tab" href="briefs.html" aria-label="Briefs">{{i:briefcase-business}}</a>
+    <a class="tab" href="active.html" aria-label="Active">{{i:layers}}</a>
+    <a class="tab is-on" href="you.html" aria-current="page">{{i:circle-user-round}}<span>You</span></a>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -83,7 +83,6 @@
   document.addEventListener('click', (e) => { if (!menu.hidden && !e.target.closest('.n-more')) close(); });
   addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); } });
 
-  $('#settings').addEventListener('click', () => say('Settings isn’t built in this prototype yet.'));
   $('#back').addEventListener('click', (e) => { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (_) {} });
   addEventListener('scroll', () => top.classList.toggle('is-stuck', scrollY > 4), { passive: true });
   setInterval(() => { if (N.length && !document.hidden) { $$('.n-item').forEach((li) => { const n = N.find((x) => x.id === li.dataset.id); if (n) $('.n-time', li).textContent = ago(n.at); }); } }, 60000);

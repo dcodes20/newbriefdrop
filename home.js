@@ -20,7 +20,8 @@
 
   /* ── state ─────────────────────────────────────────────────────────── */
   let saved = store.get('briefdrop.saved', []); if (!Array.isArray(saved)) saved = [];
-  const started = new Set();
+  const storedStarted = store.get('briefdrop.started', []);
+  const started = new Set(Array.isArray(storedStarted) ? storedStarted : []);
   const S = { hero: null, daily: [], more: [], expanded: false, busy: false };
   const all = () => [S.hero, ...S.daily, ...S.more, ...saved].filter(Boolean);
   const find = (id) => all().find((b) => b.id === id);
@@ -150,14 +151,26 @@
   $('#d-list').addEventListener('change', prog);
   $('#d-begin').addEventListener('click', () => {
     if (!current) return;
-    started.add(current.id); dlgD.close(); say('Brief started. Good luck.');
+    const was = started.has(current.id);
+    started.add(current.id); store.set('briefdrop.started', [...started]);
+    if (!was) window.BriefDropNotifications.record({
+      id: `start:${current.id}`, type: 'progress', title: 'Brief started',
+      text: `You started "${current.title}".`, href: 'active.html?id=' + encodeURIComponent(current.id),
+    });
+    dlgD.close(); say(was ? 'Welcome back. Pick up where you left off.' : 'Brief started. Good luck.');
     $$(`[data-id="${CSS.escape(current.id)}"] .kick`).forEach((k) => { if (!k.textContent.includes('IN PROGRESS')) k.textContent += ' · IN PROGRESS'; });
   });
   $('#d-save').addEventListener('click', () => { if (current) toggleSave(current); syncSave(); });
 
   function toggleSave(b) {
     const i = saved.findIndex((s) => s.id === b.id || s.title === b.title);
-    if (i >= 0) { saved.splice(i, 1); say('Removed from saved.'); } else { saved.unshift(b); say('Saved.'); }
+    if (i >= 0) { saved.splice(i, 1); say('Removed from saved.'); } else {
+      saved.unshift(b); say('Saved.');
+      window.BriefDropNotifications.record({
+        id: `save:${b.id}`, type: 'save', title: 'Brief saved',
+        text: `"${b.title}" was added to your Saved briefs.`, href: 'saved.html',
+      });
+    }
     store.set('briefdrop.saved', saved);
     repaintMarks();
     $$(`[data-bm="${CSS.escape(b.id)}"]`).forEach((btn) => { btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); });

@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0a0a0a">
+  <script src="theme.js"></script>
   <title>BriefDrop – Active</title>
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -11,7 +12,9 @@
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="notifications.css">
   <link rel="stylesheet" href="active.css">
+  <link rel="stylesheet" href="theme.css">
   <script src="icons.js" defer></script>
+  <script src="notification-events.js" defer></script>
   <script src="brief-ai.js" defer></script>
   <script src="active.js" defer></script>
 </head>
@@ -69,7 +72,7 @@
     <a class="tab" href="home.html">{{i:house}}<span class="sr">Home</span></a>
     <a class="tab" href="briefs.html" aria-label="Briefs">{{i:briefcase-business}}</a>
     <a class="tab is-on" href="active.html" aria-current="page">{{i:layers}}<span>Active</span></a>
-    <button class="tab" type="button" data-soon="Profile" aria-label="Profile">{{i:circle-user-round}}</button>
+    <a class="tab" href="you.html" aria-label="You">{{i:circle-user-round}}</a>
   </nav>
 
   <dialog class="sheet" id="sdlg" aria-labelledby="sd-t">
