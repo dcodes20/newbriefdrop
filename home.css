@@ -26,6 +26,7 @@ a { color: inherit; text-decoration: none; }
 /* To use your photo: drop it at assets/avatar.png and uncomment the next line. */
 /* .avatar { --avatar: url(assets/avatar.png); } */
 .avatar { background-image: var(--avatar, none); background-size: cover; background-position: center; }
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .avatar .ic { width: 22px; height: 22px; }
 .me__hi { font-family: var(--f-display); font-weight: 600; font-size: 12px; line-height: 24px; max-width: 117px; }
 .bar__r { display: flex; align-items: center; gap: 8px; }

@@ -61,14 +61,14 @@
   $('#av-i').style.setProperty('--avbg', `linear-gradient(135deg, hsl(${hue} 70% 45%), hsl(${(hue + 60) % 360} 70% 35%))`);
   const initial = () => ($('#name').textContent.trim()[0] || 'D').toUpperCase();
   $('#av-i').textContent = initial();
-  const photo = !demo && store.get('briefdrop.avatar', null);
+  const photo = store.get('briefdrop.avatar', null);
   if (photo) { $('#av-img').src = photo; $('#av-img').hidden = false; }
   $('#av').addEventListener('click', () => $('#av-file').click());
   $('#av-file').addEventListener('change', () => {
     const f = $('#av-file').files[0]; if (!f || !f.type.startsWith('image/')) return;
     const im = new Image(), url = URL.createObjectURL(f);
     im.onload = () => { const s = 160, c = document.createElement('canvas'); c.width = c.height = s; const g = c.getContext('2d'), m = Math.min(im.width, im.height); g.drawImage(im, (im.width - m) / 2, (im.height - m) / 2, m, m, 0, 0, s, s); URL.revokeObjectURL(url);
-      const d = c.toDataURL('image/jpeg', .85); $('#av-img').src = d; $('#av-img').hidden = false; if (!demo) store.set('briefdrop.avatar', d); say('Photo updated.'); };
+      const d = c.toDataURL('image/jpeg', .85); $('#av-img').src = d; $('#av-img').hidden = false; store.set('briefdrop.avatar', d); say('Photo updated.'); };
     im.src = url;
   });
   const nameEl = $('#name');
